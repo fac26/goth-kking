@@ -2,9 +2,7 @@
 <summary>Project Documentation</summary>
 
 ### Introduction
-
-What are you building?
-Why are you building it?
+We are building a web app that lets users create spaces for their homes or communal spaces where they share tasks, and create fair rotations of said shared tasks.
 
 ### Project scope
 
