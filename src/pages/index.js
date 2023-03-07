@@ -12,13 +12,24 @@ function LandingPage() {
 	return (
 		<div className="container">
 			{!session ? (
-				<Auth
-					supabaseClient={supabase}
-					magicLink
-					providers
-				/>
+				<>
+					<Auth
+						supabaseClient={supabase}
+						magicLink
+						providers
+					/>
+					<div>Info about GOTH</div>
+				</>
 			) : (
-				<CreateSpace session={session} />
+				<>
+					<CreateSpace session={session} />
+					<button
+						className="button block"
+						onClick={() => supabase.auth.signOut()}>
+						Sign Out
+					</button>
+					{/**add list of this user spaces */}
+				</>
 			)}
 		</div>
 	)

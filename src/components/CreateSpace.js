@@ -9,27 +9,35 @@ function CreateSpace({ session }) {
 	console.log(user)
 	const submitSpaceHandler = async (event) => {
 		event.preventDefault()
-		const { data, error } = await supabase
+		//hadle input!!!
+
+		const spacesResponse = await supabase
 			.from('spaces')
-			.insert([{ name: 'The Space' }])
+			.insert([{ name: 'The Space4' }])
 			.select()
 
-		if (error) {
-			console.log(error)
+		if (spacesResponse.error) {
+			console.log(spacesResponse.error)
 			return
 		}
-		console.log(data[0].id, error)
-		const userCreatedRespose = await supabase
+		console.log(spacesResponse.data[0].id, spacesResponse.error)
+		console.log(spacesResponse, ' spaceResponse')
+
+		const userCreatedResponse = await supabase //{data, error} =>userCreatedResponse.data
 			.from('space_members')
 			.insert([
-				{ member_email: user.email, space_id: data[0].id, isAdmin: true }
+				{
+					member_email: user.email,
+					space_id: spacesResponse.data[0].id,
+					isAdmin: true
+				}
 			])
 			.select()
-		if (userCreatedRespose.error) {
-			console.log(userCreatedRespose.error)
+		if (userCreatedResponse.error) {
+			console.log(userCreatedResponse.error)
 			return
 		}
-		console.log(data[0].id, error, userCreatedRespose.data)
+
 		router.push('/tasks')
 	}
 
