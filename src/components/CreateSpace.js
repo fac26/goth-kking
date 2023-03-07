@@ -9,11 +9,16 @@ function CreateSpace({ session }) {
 	console.log(user)
 	const submitSpaceHandler = async (event) => {
 		event.preventDefault()
+		const nameOfSpace = event.target[0].value
+		console.dir(nameOfSpace)
 		//hadle input!!!
-
+		if (nameOfSpace.length == 0) {
+			//checking the user input is not empty
+			return
+		}
 		const spacesResponse = await supabase
 			.from('spaces')
-			.insert([{ name: 'The Space4' }])
+			.insert([{ name: nameOfSpace }])
 			.select()
 
 		if (spacesResponse.error) {
@@ -38,14 +43,18 @@ function CreateSpace({ session }) {
 			return
 		}
 
-		router.push('/tasks')
+		//router.push('/tasks')
 	}
 
 	return (
 		<form onSubmit={submitSpaceHandler}>
 			<div>
-				<label>Name space</label>
-				<input />
+				<label htmlFor="spaceName">Name space</label>
+				<input
+					name="spaceName"
+					type="text"
+					id="spaceName"
+				/>
 			</div>
 			<button>Add</button>
 		</form>
