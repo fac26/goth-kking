@@ -1,8 +1,11 @@
 import { Auth } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Account from '@components/Account'
+import Login from '../components/CreateSpace'
+import CreateSpace from '../components/CreateSpace'
+import { userAgent } from 'next/server'
 
-function Home() {
+function LandingPage() {
 	const session = useSession()
 	const supabase = useSupabaseClient()
 
@@ -15,10 +18,10 @@ function Home() {
 					providers
 				/>
 			) : (
-				<Account session={session} />
+				<CreateSpace session={session} />
 			)}
 		</div>
 	)
 }
 
-export default Home
+export default LandingPage
