@@ -1,25 +1,17 @@
-import { Auth } from '@supabase/auth-ui-react'
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Account from '@components/Account'
-import Login from '../components/CreateSpace'
-import CreateSpace from '../components/CreateSpace'
-import { userAgent } from 'next/server'
+import { useRouter } from 'next/navigation' //added to redirect
 
 function LandingPage() {
-	const session = useSession()
-	const supabase = useSupabaseClient()
+	const router = useRouter() //call router
 
 	return (
 		<div className="container">
-			{!session ? (
-				<Auth
-					supabaseClient={supabase}
-					magicLink
-					providers
-				/>
-			) : (
-				<CreateSpace session={session} />
-			)}
+			<div>Info about GOTH</div>
+			<button
+				onClick={() => {
+					router.push('/login')
+				}}>
+				Login
+			</button>
 		</div>
 	)
 }
