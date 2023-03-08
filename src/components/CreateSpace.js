@@ -54,6 +54,11 @@ function CreateSpace({ session }) {
 					type="text"
 					id="spaceName"
 				/>
+				<style jsx>{`
+					#spaceName {
+						border: 1px solid black;
+					}
+				`}</style>
 			</div>
 			<button>Add</button>
 		</form>
