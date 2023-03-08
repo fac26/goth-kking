@@ -1,41 +1,46 @@
-<details>
-<summary>Project Documentation</summary>
+# Project Documentation
 
 ### Introduction
-We are building a web app that lets users create spaces for their homes or communal spaces where they share tasks, and create fair rotations of said shared tasks.
 
+ We are building a web app that lets members of a household or communal space receive automated fair rotations for tasks they want to share between them, mark them us Done so other people know that they have completed them and compete for a the first position on a leaderboard based on points they assign to tasks on their own, according to their own criteria.
+ 
 ### Project scope
 
-What are you not building?
-How did you decide what features were important?
+ The scope of this project is to help users create their own spaces, add members in the spaces, and rotate tasks fairly between them.
+We have decided letting users create Weekly rotations for tasks is the feature we want to provide as part of the MVP, and later on we plan to let them create daily rotations, as well.
 
 ### Project plan
 
-How are you going to structure your sprints?
-What order are you going to build in?
-How did user research inform your plan?
+(How are you going to structure your sprints?
+What order are you going to build in?)
+User research informed our plan from the beginning. We had a Design Week, where we decided on features and constraints based on user research and usability testing on a clickable Figma prototype.
 
 ### Requirement analysis
 
-How will you ensure your project is accessible to as many users as possible?
-Are there any legal or regulatory requirements you should consider?
+We will you ensure our project is accessible to as many users as possible by spreading the word about it in coworking or other communal spaces we are active, like Space4 in London. 
+There are no legal or regulatory requirements to consider in this project.
 
 ### Project learnings
-Did your team work effectively?
-What would you do differently next time?
+
+Our team worked effectively for this project.
+What we would do differently next time is .................
 
 ### Research and findings
-What did you find out from user testing?
+
+We had many findings from user testing. Users gave us opinions that we have considered on certain elements and their appearance (drop down menu, share link) as well as on what they want from a task rotation app and what data they want to view on the dashboard, the leaderboard etc. and how.
 
 ### Project outcomes
-Were your assumptions right or wrong?
+
+Our assumptions were mostly right. One user tester was neutral about the need for automatic rotations for teams in place of a paper rotation, which falsified our assuption that users would be positive about the need for automated task rotations.
 
 ### Recommendations and conclusions
-What features would you prioritise to build next?
-Was the project a success?
+
+The features we prioritise to build next, are a monthly rotation option and ....................
+Overall, the project was a success, and ...............
 
 ### Software Development Lifecycle stages
-Planning What roles did your team take on?
+
+With regards to planning, our team took on roles. These were Scrum Facilitator (Iman), DevOps (Karol), QA (Natalia and Georgia) and UX Lead (Konstantina).
 
 Explain the roles and responsibilities of all people working within the software development lifecycle, and how they relate to the project (K2)
 
@@ -46,7 +51,8 @@ Outline how teams work effectively to produce software and how to contribute app
 
 Analysis
 
-What might be the intended and unintended consequences of building this product?
+What might be the intended and unintended consequences of building this product?......................
+One unintended consequence might be competition between roommates.
 
 Design
 
@@ -84,9 +90,20 @@ Did writing automated tests catch any bugs?
 
 Analyse unit testing results and review the outcomes, correcting errors. (S4)
 
-Deploy
 
-Where/how did you deploy your application?
+### Clone Repo
+
+First, `clone` this repo to your local machine
+
+Then, run `npm install` to install all dependencies
+
+Now, just run `npm run dev` to run the app
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Deploy
+
+You can view a deployment of the application [here](https://goth-kking-oajofl86l-gothikk.vercel.app/)  
 
 Review and justify their contribution to building, managing and deploying code into the relevant environment in accordance with the project specification (S10)
 
