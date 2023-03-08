@@ -24,7 +24,8 @@ const Navbar = ({ user }) => {
                 </div>
 
                 <div className="flex items-center">
-                    <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/members">Members</Link>
+                    <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/members">
+                        Members</Link>
                     <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/tasks">Tasks</Link>
                     <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/leaderboard">Leaderboard</Link>
                     <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/landing-page">Landing Page</Link>
@@ -48,4 +49,10 @@ const Navbar = ({ user }) => {
         </div>
     );
 }
-export default Navbar;
+export default function Test() {
+    return (
+        <h1 className="text-3xl font-bold underline">
+            Hello world!
+        </h1>
+    )
+}
