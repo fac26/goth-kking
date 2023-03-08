@@ -90,7 +90,18 @@ Did writing automated tests catch any bugs?
 
 Analyse unit testing results and review the outcomes, correcting errors. (S4)
 
-Deploy
+
+### Clone Repo
+
+First, `clone` this repo to your local machine
+
+Then, run `npm install` to install all dependencies
+
+Now, just run `npm run dev` to run the app
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+### Deploy
 
 You can view a deployment of the application [here](https://goth-kking-oajofl86l-gothikk.vercel.app/)  
 
