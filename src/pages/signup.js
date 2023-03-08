@@ -1,13 +1,8 @@
-import { useState } from 'react'
 import Link from 'next/link'
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useSession } from '@supabase/auth-helpers-react'
 import SignUpForm from '@components/Auth/SignUpForm'
 
 function SignUp() {
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
-
-	const supabase = useSupabaseClient()
 	const session = useSession()
 
 	return (
@@ -15,8 +10,8 @@ function SignUp() {
 			<h1>Sign Up</h1>
 			{!session ? (
 				<div>
-					<SignUpForm handleSubmit={handleSignUp} />
 					<p>
+						<SignUpForm />
 						Already have an account?
 						<Link href="/login">Sign In</Link>
 					</p>
