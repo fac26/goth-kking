@@ -16,13 +16,9 @@ const Navbar = ({ user }) => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" />
             <div className="flex justify-between items-center">
                 <div className="flex items-center">
-                    <Image className="h-8 w-auto mr-2" src="/logo.png" alt="website logo" width={32} height={32} />
 
-                    <Link className="text-white font-semibold text-lg" href="/">
-                        Task App
-                    </Link>
-                </div>
-
+                    <Link className="text-white font-semibold text-lg" href="/task-app">
+                        Add Task</Link></div>
                 <div className="flex items-center">
                     <Link className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="/members">
                         Members</Link>
@@ -49,10 +45,4 @@ const Navbar = ({ user }) => {
         </div>
     );
 }
-export default function Test() {
-    return (
-        <h1 className="text-3xl font-bold underline">
-            Hello world!
-        </h1>
-    )
-}
+export default Navbar;
