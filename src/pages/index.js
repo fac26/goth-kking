@@ -38,11 +38,11 @@ function LandingPage() {
 				<div>
 					<p>Click here to</p>
 					<button>
-						{/* <Link href="./login">login with an existing account</Link> */}
+						<Link href="./login">login with an existing account</Link>
 					</button>
 					<p>or</p>
 					<button>
-						{/* <Link href="./sign-up">create an account</Link> */}
+						<Link href="./sign-up">create an account</Link>
 					</button>
 				</div>
 			</div>
