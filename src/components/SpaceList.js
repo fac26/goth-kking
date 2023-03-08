@@ -1,3 +1,4 @@
+//Version 2.0
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
@@ -23,6 +24,11 @@ function SpaceList({ session }) {
 
 		setSpaces(spaceNames)
 	}
+
+	// const linkingspaces = await supabase //should we query for each space_id with different query as we get an array?
+
+	// .from("spaces")
+	// .select(name, space_id)
 
 	return (
 		<div className="form-widget">
