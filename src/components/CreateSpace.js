@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
-import { useRouter } from 'next/navigation' //added to redirect
+import { useRouter } from 'next/router' //added to redirect //next/router wich gives us route.query!
 function CreateSpace({ session }) {
 	const supabase = useSupabaseClient()
 	const user = useUser()
 	const router = useRouter() //call router
-
+	//console.log(router.push('/'))
+	const [newSpace, setNewSpace] = useState('')
 	console.log(user)
 	const submitSpaceHandler = async (event) => {
 		event.preventDefault()
@@ -42,7 +43,7 @@ function CreateSpace({ session }) {
 			console.log(userCreatedResponse.error)
 			return
 		}
-
+		setNewSpace(nameOfSpace)
 		//router.push('/tasks')
 	}
 

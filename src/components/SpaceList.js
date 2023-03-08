@@ -17,29 +17,21 @@ function SpaceList({ session }) {
 	}, [session])
 
 	async function getSpaceList() {
-		let spaceResponse = await supabase
-			.from('space_members')
-			.select('space_id') //?
-			.eq('member_email', user.email)
-		console.log(spaceResponse.data, ' from home') //array of objects
-		//0: {space_id: 36} 1	: {space_id: 37} 2: {space_id: 38}
+		//we pass second second arg to rpc {email:user.email}, this is how we can add args to function we defined as get_spaces(email)
+		const currentUserMemberOfList = await supabase.rpc('get_spaces', {
+			email: user.email
+		})
 
-		console.log(spaceResponse.data)
-		const spaceNameList = []
-		for (let spaceObj of spaceResponse.data) {
-			let whatspaces = await supabase
-				.from('spaces')
-				.select('name')
-				.eq('id', spaceObj.space_id)
-			spaceNameList.push(whatspaces.data[0].name)
-			console.log(spaceObj.space_id)
-			console.log(whatspaces.data[0].name)
-		}
-		console.log(spaceNameList) //['yep', 'cheese']
-		setSpaces(spaceNameList)
-		console.log(spaces)
+		console.log(currentUserMemberOfList.data, user.email)
+
+		const spaceNames = currentUserMemberOfList.data.map(
+			(spaceObj) => spaceObj.name
+		)
+		console.log(spaceNames)
+
+		setSpaces(spaceNames)
 	}
-	console.log(spaces)
+
 	// const linkingspaces = await supabase //should we query for each space_id with different query as we get an array?
 
 	// .from("spaces")
