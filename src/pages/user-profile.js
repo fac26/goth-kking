@@ -57,7 +57,7 @@ function HomePage() {
 			return
 		}
 		//we pass second second arg to rpc {email:user.email}, this is how we can add args to function we defined as get_spaces(email)
-		const currentUserMemberOfList = await supabase.rpc('get_all_spaces', {
+		const currentUserMemberOfList = await supabase.rpc('get_spaces', {
 			email: user.email
 		})
 
