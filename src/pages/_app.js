@@ -16,8 +16,9 @@ function MyApp({ Component, pageProps }) {
 		{ title: "Members", icon: <UserIcon/>, path: "/members"},
 		{ title: "Tasks", icon: <CreditCardIcon/>, path: "/tasks"},
 		{ title: "Leaderboard", icon: <TrophyIcon/>, path: "/leaderboard"},
-		{ title: "Landing Page", icon: <BookOpenIcon/>, path: "/"}
+		
 	]
+	// { title: "Landing Page", icon: <BookOpenIcon/>, path: "/landingpage"}
 	const router = useRouter();
 	return (
 		<>
@@ -42,6 +43,13 @@ function MyApp({ Component, pageProps }) {
 			</li>
 			))}
 			</ul>
+			{open && (
+				<button
+						className={`text-white`}
+						onClick={() => supabase.auth.signOut()}>
+						Sign Out
+					</button>
+				)}
 			</div>
 			<div className='p-7 text-2xl font-semibold flex-1 h-screen'>
 		<SessionContextProvider

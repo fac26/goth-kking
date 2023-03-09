@@ -33,11 +33,6 @@ function LandingPage() {
 				</>
 			) : (
 				<>
-					<button
-						className="button block"
-						onClick={() => supabase.auth.signOut()}>
-						Sign Out
-					</button>
 					{/**add list of this user spaces */}
 				</>
 			)}

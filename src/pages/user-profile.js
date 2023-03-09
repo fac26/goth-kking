@@ -89,11 +89,6 @@ function HomePage() {
 						user={user}
 						spaces={spaces}
 					/>
-					<button
-						className="button block"
-						onClick={() => supabase.auth.signOut()}>
-						Sign Out
-					</button>
 				</>
 			) : null}
 			{/**add list of this user spaces */}
