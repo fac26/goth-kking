@@ -54,7 +54,17 @@ function MyApp({ Component, pageProps }) {
 };
 export default MyApp
 
-//create list/dictionary of the navbar items and their links
-//every menu item is a link
 //when page is selected the hover effect stays
 //add topbar 
+
+// const router = useRouter()
+
+// {menus.map(menu => (
+//   <li key={menu.path}>
+//     <Link href={menu.path} className={`${!open && 'hidden'} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md ${
+//       router.pathname === menu.path && 'bg-black'
+//     }`}>
+//       <span className="inline-block w-6 h-6">{menu.icon}</span>{menu.title}
+//     </Link>
+//   </li>
+// ))}
