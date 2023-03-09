@@ -11,7 +11,6 @@ function HomePage() {
 	const supabase = useSupabaseClient()
 	const user = useUser()
 	const router = useRouter()
-	//console.log(router.push('/'))
 
 	const [spaces, setSpaces] = useState('')
 
@@ -32,7 +31,7 @@ function HomePage() {
 				{
 					member_email: user.email,
 					space_id: spacesResponse.data[0].id,
-					isAdmin: true
+					is_admin: true
 				}
 			])
 			.select()
@@ -58,7 +57,7 @@ function HomePage() {
 			return
 		}
 		//we pass second second arg to rpc {email:user.email}, this is how we can add args to function we defined as get_spaces(email)
-		const currentUserMemberOfList = await supabase.rpc('get_spaces', {
+		const currentUserMemberOfList = await supabase.rpc('get_all_spaces', {
 			email: user.email
 		})
 

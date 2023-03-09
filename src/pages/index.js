@@ -15,7 +15,7 @@ function LandingPage() {
 	const router = useRouter()
 	useEffect(() => {
 		if (session) {
-			router.push('/home')
+			router.push('/user-profile')
 		}
 	}, [session])
 
