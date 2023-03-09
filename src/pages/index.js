@@ -2,19 +2,25 @@ import { Auth } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Account from '@components/Account'
 
-import Login from '../components/CreateSpace'
-import CreateSpace from '../components/CreateSpace'
+import Login from '../components/spaces/CreateSpace'
+import CreateSpace from '../components/spaces/CreateSpace'
 import { userAgent } from 'next/server'
-import SpaceList from 'components/SpaceList'
 import Avatar from 'components/Avatar'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 
 function LandingPage() {
-
 	const session = useSession()
 	const supabase = useSupabaseClient()
+	const router = useRouter()
+	useEffect(() => {
+		if (session) {
+			router.push('/user-profile')
+		}
+	}, [session])
 
 	return (
-//layout insert
+		//layout insert
 		<div className="container">
 			{!session ? (
 				<>
@@ -27,9 +33,6 @@ function LandingPage() {
 				</>
 			) : (
 				<>
-					<Account session={session}/>
-					<CreateSpace session={session} /> 
-					<SpaceList session={session} /> 
 					<button
 						className="button block"
 						onClick={() => supabase.auth.signOut()}>
