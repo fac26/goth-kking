@@ -34,7 +34,8 @@ function MyApp({ Component, pageProps }) {
 			</div>
 			<ul className='pt-6'>
 				{menus.map((menu,index)=>(
-					<li key={index} className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md  ${index === 0 && 'bg-light-white'}}`}>{menu.icon}
+					<li key={index} className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md  ${index === 0 && 'bg-light-white'}}`}>
+						<span className='h-5 w-5'>{menu.icon}</span>
 					<span className={`${!open && 'hidden'} origin-left duration-200`}>{menu.title}</span>
 					</li>
 				))}
