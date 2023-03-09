@@ -33,7 +33,7 @@ function CreateSpace({ session }) {
 				{
 					member_email: user.email,
 					space_id: spacesResponse.data[0].id,
-					isAdmin: true
+					is_admin: true
 				}
 			])
 			.select()

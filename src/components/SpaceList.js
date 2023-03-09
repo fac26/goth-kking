@@ -14,7 +14,7 @@ function SpaceList({ session }) {
 
 	async function getSpaceList() {
 		//we pass second second arg to rpc {email:user.email}, this is how we can add args to function we defined as get_spaces(email)
-		const currentUserMemberOfList = await supabase.rpc('get_spaces', {
+		const currentUserMemberOfList = await supabase.rpc('get_all_spaces', {
 			email: user.email
 		})
 
