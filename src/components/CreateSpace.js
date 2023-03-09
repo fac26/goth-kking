@@ -23,20 +23,21 @@ function CreateSpace({ session }) {
 			.select()
 
 		if (spacesResponse.error) {
-			//console.log(spacesResponse.error)
+			console.log('error')
 			return
 		}
-
+		console.log(spacesResponse.data[0].id, user.email)
 		const userCreatedResponse = await supabase //{data, error} =>userCreatedResponse.data
 			.from('space_members')
 			.insert([
 				{
 					member_email: user.email,
 					space_id: spacesResponse.data[0].id,
-					isAdmin: true
+					is_admin: true
 				}
 			])
 			.select()
+		console.log(userCreatedResponse)
 		if (userCreatedResponse.error) {
 			//console.log(userCreatedResponse.error)
 			return

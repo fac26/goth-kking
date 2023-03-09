@@ -14,15 +14,17 @@ function SpaceList({ session }) {
 
 	async function getSpaceList() {
 		//we pass second second arg to rpc {email:user.email}, this is how we can add args to function we defined as get_spaces(email)
-		const currentUserMemberOfList = await supabase.rpc('get_spaces', {
+		const currentUserMemberOfList = await supabase.rpc('get_all_spaces', {
 			email: user.email
 		})
+		console.log(user.email)
+		if (currentUserMemberOfList.data) {
+			const spaceNames = currentUserMemberOfList.data.map(
+				(spaceObj) => spaceObj.name
+			)
 
-		const spaceNames = currentUserMemberOfList.data.map(
-			(spaceObj) => spaceObj.name
-		)
-
-		setSpaces(spaceNames)
+			setSpaces(spaceNames)
+		}
 	}
 
 	// const linkingspaces = await supabase //should we query for each space_id with different query as we get an array?
@@ -32,11 +34,13 @@ function SpaceList({ session }) {
 
 	return (
 		<div className="form-widget">
-			<ul>
-				{spaces.map((spaceitem, index) => (
-					<li key={index}>{spaceitem}</li>
-				))}
-			</ul>
+			{spaces ? (
+				<ul>
+					{spaces.map((spaceitem, index) => (
+						<li key={index}>{spaceitem}</li>
+					))}
+				</ul>
+			) : null}
 		</div>
 	)
 }
