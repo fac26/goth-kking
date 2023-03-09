@@ -2,11 +2,8 @@ import '@styles/globals.css'
 import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
 import { SessionContextProvider } from '@supabase/auth-helpers-react'
 import { useState } from 'react'
-import Navbar from '@components/Navbar'
 import {  HomeIcon, CreditCardIcon, UserIcon, TrophyIcon, BookOpenIcon } from "@heroicons/react/24/solid";
-import Avatar from 'components/Avatar'
 import Image from 'next/image'
-import goblin from '../assets/goblin.jpg'
 import logo from '../assets/logo.png'
 import Link from 'next/link'
 
@@ -35,13 +32,6 @@ function MyApp({ Component, pageProps }) {
 				<h1 className={`text-white origin-left font-medium text-xl duration-300 ${!open && "scale-0"}`}>G.O.T.H or spacename</h1>
 			</div>
 			<ul className='pt-6'>
-				{/* {menus.map((menu,index)=>(
-					<li key={index} className={`text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md  ${index === 0 && 'bg-black'}}`}>
-						<span className='h-5 w-5'>{menu.icon}</span>
-					<span className={`${!open && 'hidden'} origin-left duration-200`}>{menu.title}</span>
-					</li>
-				))} */}
-				
 			{menus.map(menu => (
 			<li key={menu.path}>
 				<Link href={menu.path} className={`${!open && 'hidden'} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md `}>
