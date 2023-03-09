@@ -10,6 +10,8 @@
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@headlessui/react": "^1.7.13",
+		"@heroicons/react": "^1.0.4",
 		"@supabase/auth-helpers-nextjs": "^0.5.5",
 		"@supabase/auth-helpers-react": "^0.3.1",
 		"@supabase/auth-ui-react": "^0.3.3",
@@ -22,10 +24,7 @@
 		"autoprefixer": "^10.4.13",
 		"eslint": "8.35.0",
 		"eslint-config-next": "13.2.3",
-
 		"postcss": "^8.4.21",
-
-
 		"supabase": "^1.41.6",
 		"tailwindcss": "^3.2.7"
 	}
