@@ -7,25 +7,27 @@ import {  HomeIcon, CreditCardIcon, UserIcon, TrophyIcon, BookOpenIcon } from "@
 import Avatar from 'components/Avatar'
 import Image from 'next/image'
 import goblin from '../assets/goblin.jpg'
+import logo from '../assets/logo.png'
+import Link from 'next/link'
 
 function MyApp({ Component, pageProps }) {
 	const [supabase] = useState(() => createBrowserSupabaseClient())
 	const [open, setOpen] = useState(true);
 	const menus = [
-		{ title: "Home", icon: <HomeIcon/> },
-		{ title: "Members", icon: <UserIcon/>},
-		{ title: "Tasks", icon: <CreditCardIcon/>},
-		{ title: "Leaderboard", icon: <TrophyIcon/>},
-		{ title: "Landing Page", icon: <BookOpenIcon/>}
+		{ title: "Home", icon: <HomeIcon/>, path: "/" },
+		{ title: "Members", icon: <UserIcon/>, path: "/members"},
+		{ title: "Tasks", icon: <CreditCardIcon/>, path: "/tasks"},
+		{ title: "Leaderboard", icon: <TrophyIcon/>, path: "/leaderboard"},
+		{ title: "Landing Page", icon: <BookOpenIcon/>, path: "/"}
 	]
 	return (
 		<>
 		<div className='flex'>
 			<div 
-			className={`${open ? 'w-72' : 'w-20'} duration-300 h-screen p-5 pt-8 bg-dark-purple relative`}>
+			className={`${open ? 'w-72' : 'w-20'} duration-300 h-screen p-5 pt-8 bg-green relative`}>
 			<div classname="flex gap-x-4 items-center">
 				<Image
-				src={goblin}
+				src={logo}
 				alt="logo"
 				width={100}
 				height={100}
@@ -33,12 +35,20 @@ function MyApp({ Component, pageProps }) {
 				<h1 className={`text-white origin-left font-medium text-xl duration-300 ${!open && "scale-0"}`}>G.O.T.H or spacename</h1>
 			</div>
 			<ul className='pt-6'>
-				{menus.map((menu,index)=>(
-					<li key={index} className={`text-gray-300 text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-light-white rounded-md  ${index === 0 && 'bg-light-white'}}`}>
+				{/* {menus.map((menu,index)=>(
+					<li key={index} className={`text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md  ${index === 0 && 'bg-black'}}`}>
 						<span className='h-5 w-5'>{menu.icon}</span>
 					<span className={`${!open && 'hidden'} origin-left duration-200`}>{menu.title}</span>
 					</li>
-				))}
+				))} */}
+				
+			{menus.map(menu => (
+			<li key={menu.path}>
+				<Link href={menu.path} className={`${!open && 'hidden'} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md `}>
+				<span className="inline-block w-6 h-6">{menu.icon}</span>{menu.title}
+				</Link>
+			</li>
+			))}
 			</ul>
 			</div>
 			<div className='p-7 text-2xl font-semibold flex-1 h-screen'>
@@ -54,7 +64,7 @@ function MyApp({ Component, pageProps }) {
 };
 export default MyApp
 
-//add icons, that will prbs change the look of the navbar-change line 41
 //create list/dictionary of the navbar items and their links
 //every menu item is a link
+//when page is selected the hover effect stays
 //add topbar 
