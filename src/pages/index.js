@@ -6,6 +6,7 @@ import Login from '../components/CreateSpace'
 import CreateSpace from '../components/CreateSpace'
 import { userAgent } from 'next/server'
 import SpaceList from 'components/SpaceList'
+import Avatar from 'components/Avatar'
 
 function LandingPage() {
 
@@ -26,8 +27,9 @@ function LandingPage() {
 				</>
 			) : (
 				<>
-					<CreateSpace session={session} />
-					<SpaceList session={session} />
+					<Account session={session}/>
+					<CreateSpace session={session} /> 
+					<SpaceList session={session} /> 
 					<button
 						className="button block"
 						onClick={() => supabase.auth.signOut()}>
