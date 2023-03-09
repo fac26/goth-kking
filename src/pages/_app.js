@@ -6,6 +6,7 @@ import {  HomeIcon, CreditCardIcon, UserIcon, TrophyIcon, BookOpenIcon } from "@
 import Image from 'next/image'
 import logo from '../assets/logo.png'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps }) {
 	const [supabase] = useState(() => createBrowserSupabaseClient())
@@ -17,6 +18,7 @@ function MyApp({ Component, pageProps }) {
 		{ title: "Leaderboard", icon: <TrophyIcon/>, path: "/leaderboard"},
 		{ title: "Landing Page", icon: <BookOpenIcon/>, path: "/"}
 	]
+	const router = useRouter();
 	return (
 		<>
 		<div className='flex'>
@@ -34,7 +36,7 @@ function MyApp({ Component, pageProps }) {
 			<ul className='pt-6'>
 			{menus.map(menu => (
 			<li key={menu.path}>
-				<Link href={menu.path} className={`${!open && 'hidden'} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md `}>
+				<Link href={menu.path} className={`${!open && 'hidden'} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md ${router.pathname === menu.path && 'bg-black'}`}>
 				<span className="inline-block w-6 h-6">{menu.icon}</span>{menu.title}
 				</Link>
 			</li>
@@ -54,17 +56,5 @@ function MyApp({ Component, pageProps }) {
 };
 export default MyApp
 
-//when page is selected the hover effect stays
 //add topbar 
-
-// const router = useRouter()
-
-// {menus.map(menu => (
-//   <li key={menu.path}>
-//     <Link href={menu.path} className={`${!open && 'hidden'} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md ${
-//       router.pathname === menu.path && 'bg-black'
-//     }`}>
-//       <span className="inline-block w-6 h-6">{menu.icon}</span>{menu.title}
-//     </Link>
-//   </li>
-// ))}
+//refactor into a component (navbar)
