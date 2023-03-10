@@ -1,18 +1,19 @@
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import { useUser } from '@supabase/auth-helpers-react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import Layout from 'components/Layout'
+import Layout from '@components/Layout'
+import Ranking from '@components/Ranking'
 
-export default function LeaderboardPage() {
-	const user = useUser()
-	const supabase = useSupabaseClient()
+function Leaderboard() {
 	const router = useRouter()
 	const path = router.asPath.slice(1)
 	const pathArr = router.asPath.split('/')
-	console.log(path, pathArr, user)
+
 	return (
 		<Layout id={pathArr[1]}>
-			<div>Loading...LeaderboardPage</div>
+			<Ranking />
 		</Layout>
 	)
 }
+
+export default Leaderboard
