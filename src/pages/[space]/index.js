@@ -10,8 +10,7 @@ function Space() {
 	//should be getServersideprops, otherwise it will render same for all spaces
 	return (
 		<div>
-			{/* <h1>{space.name}</h1> */}
-			Space
+			<h1>Space id {path}</h1>
 		</div>
 	)
 }
