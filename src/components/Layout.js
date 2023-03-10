@@ -1,11 +1,15 @@
 import { useEffect, useState } from 'react'
-import {  HomeIcon, CreditCardIcon, UserIcon, TrophyIcon, BookOpenIcon } from "@heroicons/react/24/solid";
+import {  HomeIcon, CreditCardIcon, UserIcon, TrophyIcon, BookOpenIcon, UserGroupIcon } from "@heroicons/react/24/solid";
 import Image from 'next/image'
 import logo from '../assets/logo.png'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 export default function Layout({id, children}) {
+    const supabase = useSupabaseClient()
+    const session = useSession()
+
     const [pathId, setPathId] = useState(id)
     useEffect(() => {
         setPathId(id)
@@ -13,6 +17,7 @@ export default function Layout({id, children}) {
     const [open, setOpen] = useState(true);
     const menus = [
 		{ title: "Home", icon: <HomeIcon/>, path: `/${pathId}` },
+        { title: "Spaces", icon: <UserGroupIcon/>, path: `/user-profile`},
 		{ title: "Members", icon: <UserIcon/>, path: `/${pathId}/members`},
 		{ title: "Tasks", icon: <CreditCardIcon/>, path: `/${pathId}/tasks`},
 		{ title: "Leaderboard", icon: <TrophyIcon/>, path: `/${pathId}/leaderboard`}	
@@ -22,6 +27,7 @@ export default function Layout({id, children}) {
     const router = useRouter();
     return(
         <>
+        {session ? (
 		<div className='flex'>
 			<div 
 			className={`${open ? 'w-72' : 'w-20'} duration-300 h-screen p-5 pt-8 bg-green relative`}>
@@ -37,7 +43,7 @@ export default function Layout({id, children}) {
 			<ul className='pt-6'>
 			{menus.map(menu => (
 			<li key={menu.path}>
-				<Link href={menu.path} className={`${!open && 'hidden'} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md ${router.pathname === menu.path && 'bg-black'}`}>
+				<Link href={menu.path} className={`${!open && 'hidden'} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md ${router.asPath === menu.path && 'bg-black'}`}>
 				<span className="inline-block w-6 h-6">{menu.icon}</span>{menu.title}
 				</Link>
 			</li>
@@ -55,7 +61,7 @@ export default function Layout({id, children}) {
             {children}
             </div>
             </div>
-           
+           ) : null}
 		</>
     )
 }

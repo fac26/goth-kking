@@ -4,13 +4,15 @@ import CreateSpace from '../components/spaces/CreateSpace'
 import SpaceList from 'components/spaces/SpaceList'
 import { useUser } from '@supabase/auth-helpers-react'
 import { useState, useEffect } from 'react'
+import Layout from 'components/Layout'
 
 function HomePage() {
 	const session = useSession()
 	const supabase = useSupabaseClient()
 	const user = useUser()
 	const router = useRouter()
-
+	const path = router.asPath.slice(1)
+	const pathArr = router.asPath.split('/')
 	const [spaces, setSpaces] = useState('')
 
 	const addSpaceHanler = async (nameOfSpace) => {
@@ -70,8 +72,8 @@ function HomePage() {
 	}
 	return (
 		//layout insert
+		<Layout>
 		<div className="container">
-			{session ? (
 				<>
 					<CreateSpace
 						session={session}
@@ -83,15 +85,10 @@ function HomePage() {
 						user={user}
 						spaces={spaces}
 					/>
-					<button
-						className="button block"
-						onClick={() => supabase.auth.signOut()}>
-						Sign Out
-					</button>
-				</>
-			) : null}
-			{/**add list of this user spaces */}
+					</>
+					
 		</div>
+		</Layout>
 	)
 }
 

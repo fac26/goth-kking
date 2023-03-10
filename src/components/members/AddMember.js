@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { Auth } from '@supabase/auth-ui-react'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
 const AddMember = () => {
 	const [formData, setFormData] = useState({ name: '', email: '' })
 	const [errors, setErrors] = useState({})
-
+	const supabase = useSupabaseClient()
 	const handleInputChange = (event) => {
 		setFormData({
 			...formData,
@@ -26,17 +28,12 @@ const AddMember = () => {
 	return (
 		<form onSubmit={handleFormSubmit}>
 			<div>
-				<label htmlFor="name">Name:</label>
-				<input
-					type="text"
-					id="name"
-					name="name"
-					value={formData.name}
-					onChange={handleInputChange}
-				/>
-				{errors.name && <p>{errors.name}</p>}
-			</div>
-			<div>
+				<h1>Invite others to your space:</h1>
+				<Auth
+						supabaseClient={supabase}
+						magicLink
+					/>
+				{/* invite link goes here */}
 				<label htmlFor="email">Email:</label>
 				<input
 					type="email"
@@ -47,9 +44,11 @@ const AddMember = () => {
 				/>
 				{errors.email && <p>{errors.email}</p>}
 			</div>
-			<button type="submit">Submit</button>
+			<button type="submit">Invite</button>
 		</form>
 	)
 }
 
 export default AddMember
+
+//want to invite member by magic link 
