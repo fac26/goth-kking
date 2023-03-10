@@ -12,8 +12,9 @@ export async function getStaticPaths() {
 		fallback: false
 	}
 }
+//getStaticProps
 
-function Space({ space_id }) {
+function MembersGetStatic({ space_id }) {
 	const user = useSession()
 	console.log(user)
 	const supabase = useSupabaseClient()
@@ -47,4 +48,7 @@ function Space({ space_id }) {
 	)
 }
 
-export default Space
+export default MembersGetStatic
+
+//"axios": "^1.3.4",
+//"dotenv": "^16.0.3",
