@@ -1,3 +1,5 @@
-export default function SpaceHome(props) {
-	return <div>Welcome to ${props}</div>
+function SpaceHome() {
+	return <div>Welcome to SpaceHome</div>
 }
+
+export default SpaceHome

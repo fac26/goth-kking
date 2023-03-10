@@ -1,27 +1,26 @@
-import '@styles/globals.css'
-import { createBrowserSupabaseClient } from '@supabase/auth-helpers-nextjs'
-import { SessionContextProvider } from '@supabase/auth-helpers-react'
-import { useState } from 'react'
+import React, { useState } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import {
 	HomeIcon,
 	CreditCardIcon,
 	UserIcon,
 	TrophyIcon
 } from '@heroicons/react/24/solid'
-import Image from 'next/image'
 import logo from '../assets/logo.png'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 
-function MyApp({ Component, pageProps }) {
-	const [supabase] = useState(() => createBrowserSupabaseClient())
+function Sidebar({ children }) {
 	const [open, setOpen] = useState(true)
+	const supabase = useSupabaseClient()
 	const menus = [
 		{ title: 'Home', icon: <HomeIcon />, path: '/' },
 		{ title: 'Members', icon: <UserIcon />, path: '/members' },
 		{ title: 'Tasks', icon: <CreditCardIcon />, path: '/tasks' },
 		{ title: 'Leaderboard', icon: <TrophyIcon />, path: '/leaderboard' }
 	]
+
 	// { title: "Landing Page", icon: <BookOpenIcon/>, path: "/landingpage"}
 	const router = useRouter()
 	return (
@@ -31,7 +30,7 @@ function MyApp({ Component, pageProps }) {
 					className={`${
 						open ? 'w-72' : 'w-20'
 					} duration-300 h-screen p-5 pt-8 bg-green relative`}>
-					<div classname="flex gap-x-4 items-center">
+					<div className="flex gap-x-4 items-center">
 						<Image
 							src={logo}
 							alt="logo"
@@ -73,18 +72,11 @@ function MyApp({ Component, pageProps }) {
 						</button>
 					)}
 				</div>
-				<div className="p-7 text-2xl font-semibold flex-1 h-screen">
-					<SessionContextProvider
-						supabaseClient={supabase}
-						initialSession={pageProps.initialSession}>
-						<Component {...pageProps} />
-					</SessionContextProvider>
-				</div>
+				<div className="p-7 text-2xl font-semibold flex-1 h-screen"></div>
+				{children}
 			</div>
 		</>
 	)
 }
-export default MyApp
 
-//add topbar
-//refactor into a component (navbar)
+export default Sidebar

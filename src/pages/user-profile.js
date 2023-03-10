@@ -52,7 +52,6 @@ function HomePage() {
 	}, [session])
 
 	async function getSpaceList() {
-		console.log(user, ' line 54')
 		if (!session) {
 			return
 		}
@@ -78,7 +77,7 @@ function HomePage() {
 		<div className="container">
 			{session ? (
 				<>
-					<Account session={session}/>
+					<Account session={session} />
 					<CreateSpace
 						session={session}
 						user={user}

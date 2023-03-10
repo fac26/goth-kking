@@ -1,13 +1,12 @@
 import { Auth } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Account from '@components/Account'
-
-import Login from '../components/spaces/CreateSpace'
-import CreateSpace from '../components/spaces/CreateSpace'
-import { userAgent } from 'next/server'
-import Avatar from 'components/Avatar'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
+// import Account from '@components/Account'
+// import Login from '../components/spaces/CreateSpace'
+// import CreateSpace from '../components/spaces/CreateSpace'
+// import { userAgent } from 'next/server'
+// import Avatar from 'components/Avatar'
 
 function LandingPage() {
 	const session = useSession()
@@ -32,9 +31,7 @@ function LandingPage() {
 					<div>Info about GOTH</div>
 				</>
 			) : (
-				<>
-					{/**add list of this user spaces */}
-				</>
+				<>{/**add list of this user spaces */}</>
 			)}
 		</div>
 	)
