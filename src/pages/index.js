@@ -13,8 +13,10 @@ function LandingPage() {
 	const session = useSession()
 	const supabase = useSupabaseClient()
 	const router = useRouter()
+
 	useEffect(() => {
 		if (session) {
+			console.log(router.query, ' query')
 			router.push('/user-profile')
 		}
 	}, [session])
