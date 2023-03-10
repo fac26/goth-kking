@@ -1,14 +1,17 @@
+import { useRef } from 'react'
 function CreateSpace({ addSpace }) {
+	const spaceNameRef = useRef()
 	const submitSpaceHandler = async (event) => {
 		event.preventDefault()
-		const nameOfSpace = event.target[0].value
+		const nameOfSpace = spaceNameRef.current.value
 
 		//hadle input!!!
-		if (nameOfSpace.length == 0) {
+		if (nameOfSpace.trim().length == 0) {
 			//checking the user input is not empty
 			return
 		}
-		addSpace(nameOfSpace)
+		addSpace(nameOfSpace.trim())
+		spaceNameRef.current.value = ''
 	}
 
 	return (
@@ -19,6 +22,8 @@ function CreateSpace({ addSpace }) {
 					name="spaceName"
 					type="text"
 					id="spaceName"
+					ref={spaceNameRef}
+
 				/>
 				<style jsx>{`
 					#spaceName {
