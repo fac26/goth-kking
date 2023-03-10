@@ -1,3 +1,4 @@
+import Link from 'next/link'
 function SpaceList({ spaces }) {
 	return (
 		<div className="form-widget">
@@ -7,7 +8,7 @@ function SpaceList({ spaces }) {
 						<li
 							key={spaceitem.id}
 							id={spaceitem.id}>
-							{spaceitem.name}
+							<Link href={spaceitem.id.toString()}>{spaceitem.name}</Link>
 						</li>
 					))}
 				</ul>
