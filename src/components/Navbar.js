@@ -3,9 +3,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 export default function Navbar({ user }) {
-	const handleSignOut = () => {
-		// handle sign out logic here
-	}
+	// const handleSignOut = () => {
+	// 	handle sign out logic here
+	// }
 
 	return (
 		<div>
