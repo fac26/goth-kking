@@ -54,7 +54,8 @@ function AddTaskForm(props) {
 		const formIsValid =
 			enteredTaskNameIsValid &&
 			enteredTaskDescriptionIsValid &&
-			enteredTaskPointsIsValid
+			enteredTaskPointsIsValid &&
+			enteredTaskAssigneeIsValid
 		if (!formIsValid) {
 			return
 		}
