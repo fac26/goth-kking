@@ -4,7 +4,7 @@ const isEmpty = (value) => value.trim() === ''
 
 function AddTaskForm(props) {
 	const taskNameRef = useRef()
-	const taskDescriptioneRef = useRef()
+	const taskDescriptionRef = useRef()
 	const taskPointsRef = useRef()
 	const taskAssigneeRef = useRef()
 
@@ -33,12 +33,14 @@ function AddTaskForm(props) {
 		event.preventDefault()
 
 		const enteredTaskName = taskNameRef.current.value
-		const enteredTaskDescription = taskDescriptioneRef.current.value
+		const enteredTaskDescription = taskDescriptionRef.current.value
 		const enteredTaskPoints = taskPointsRef.current.value
 		const enteredTaskAssignee = taskAssigneeRef.current.value
 
 		const enteredTaskNameIsValid = !isEmpty(enteredTaskName)
-		const enteredTaskDescriptionIsValid = !isEmpty(enteredTaskDescription)
+		const enteredTaskDescriptionIsValid = !isEmpty(
+			taskDescriptionRef.current.value
+		)
 		const enteredTaskPointsIsValid = Number(enteredTaskPoints) > 0
 		const enteredTaskAssigneeIsValid = !isEmpty(enteredTaskAssignee)
 
@@ -58,6 +60,7 @@ function AddTaskForm(props) {
 		}
 
 		//post req to db
+
 		props.onAddTask({
 			taskName: enteredTaskName,
 			taskDescription: enteredTaskDescription,
@@ -66,7 +69,7 @@ function AddTaskForm(props) {
 		})
 
 		taskNameRef.current.value = ''
-		taskDescriptioneRef.current.value = ''
+		taskDescriptionRef.current.value = ''
 		taskPointsRef.current.value = ''
 		taskAssigneeRef.current.value = ''
 	}
@@ -89,14 +92,15 @@ function AddTaskForm(props) {
 					id="taskDescription"
 					type="text"
 					name="taskDescription"
-					ref={taskDescriptioneRef}
+					ref={taskDescriptionRef}
 					className={taskDescriptionControlClasses}
 					//onFocus={removeInvalidClassHandler}
 				/>
 			</div>
 			<div>
-				<label>Points</label>
+				<label htmlFor="taskPoints">Points</label>
 				<input
+					id="taskPoints"
 					type="number"
 					name="points"
 					min="0"
