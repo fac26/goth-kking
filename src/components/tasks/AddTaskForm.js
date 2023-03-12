@@ -1,28 +1,142 @@
-//import {useState} from "react";
+import { useRef, useState } from 'react'
+
+const isEmpty = (value) => value.trim() === ''
+
 function AddTaskForm(props) {
-//const [frequency, setFrequency] = useState('weekly')
-const submitTaskHandler=(event)=>{
-  event.preventDefault()
-}
-  return (
-    <form onSubmit={submitTaskHandler}>
-      <div>
-        <label htmlFor="taskname"></label>
-        <input id="taskname" type="text" name="taskname" />
-      </div>
-      <div>
-        <label htmlFor="taskDescription"></label>
-        <input id="taskDescription" type="text" name="taskDescription" />
-      </div>
-      <input type="number" name="points" />
-      <select>
-        {props.members.map(member => (
-          <option key="" value={member.id}>{member.name}</option>
-        ))}
-      </select>
-      <button type="submit">Add Task</button>
-    </form>
-  )
+	const taskNameRef = useRef()
+	const taskDescriptioneRef = useRef()
+	const taskPointsRef = useRef()
+	const taskAssigneeRef = useRef()
+
+	//const [frequency, setFrequency] = useState('weekly')
+	const [formInputValidity, setformInputValidity] = useState({
+		taskname: true,
+		taskDescription: true,
+		taskPoints: true,
+		taskAssignee: true
+	})
+
+	//to add more classes here
+	const taskNameControlClasses = `${
+		formInputValidity.taskname ? '' : 'invalid'
+	}`
+	const taskDescriptionControlClasses = `${
+		formInputValidity.taskDescription ? '' : 'invalid'
+	}`
+	const taskPointsControlClasses = `${
+		formInputValidity.taskPoints ? '' : 'invalid'
+	}`
+	const taskAssigneeControlClasses = `${
+		formInputValidity.taskPoints ? '' : 'invalid'
+	}`
+	const submitTaskHandler = (event) => {
+		event.preventDefault()
+
+		const enteredTaskName = taskNameRef.current.value
+		const enteredTaskDescription = taskDescriptioneRef.current.value
+		const enteredTaskPoints = taskPointsRef.current.value
+		const enteredTaskAssignee = taskAssigneeRef.current.value
+
+		const enteredTaskNameIsValid = !isEmpty(enteredTaskName)
+		const enteredTaskDescriptionIsValid = !isEmpty(enteredTaskDescription)
+		const enteredTaskPointsIsValid = Number(enteredTaskPoints) > 0
+		const enteredTaskAssigneeIsValid = !isEmpty(enteredTaskAssignee)
+
+		setformInputValidity({
+			taskname: enteredTaskNameIsValid,
+			taskDescription: enteredTaskDescriptionIsValid,
+			taskPoints: enteredTaskPointsIsValid,
+			taskAssignee: enteredTaskAssigneeIsValid
+		})
+
+		const formIsValid =
+			enteredTaskNameIsValid &&
+			enteredTaskDescriptionIsValid &&
+			enteredTaskPointsIsValid
+		if (!formIsValid) {
+			return
+		}
+
+		//post req to db
+		props.onAddTask({
+			taskName: enteredTaskName,
+			taskDescription: enteredTaskDescription,
+			taskPoints: enteredTaskPoints,
+			taskAssignee: enteredTaskAssignee
+		})
+
+		taskNameRef.current.value = ''
+		taskDescriptioneRef.current.value = ''
+		taskPointsRef.current.value = ''
+		taskAssigneeRef.current.value = ''
+	}
+	return (
+		<form onSubmit={submitTaskHandler}>
+			<div>
+				<label htmlFor="taskname">Task title</label>
+				<input
+					id="taskname"
+					type="text"
+					name="taskname"
+					ref={taskNameRef}
+					className={taskNameControlClasses}
+					//onFocus={removeInvalidClassHandler}
+				/>
+			</div>
+			<div>
+				<label htmlFor="taskDescription">Task desctiption</label>
+				<input
+					id="taskDescription"
+					type="text"
+					name="taskDescription"
+					ref={taskDescriptioneRef}
+					className={taskDescriptionControlClasses}
+					//onFocus={removeInvalidClassHandler}
+				/>
+			</div>
+			<div>
+				<label>Points</label>
+				<input
+					type="number"
+					name="points"
+					min="0"
+					ref={taskPointsRef}
+					className={taskPointsControlClasses}
+					//onFocus={removeInvalidClassHandler}
+				/>
+			</div>
+			<div>
+				<label htmlFor="member">Assign member to task</label>
+				<select
+					id="member"
+					name="member"
+					ref={taskAssigneeRef}
+					className={taskAssigneeControlClasses}>
+					<option value="">--Please choose--</option>
+					{props.members ? (
+						<>
+							{props.members.map((member) => (
+								<option
+									key={member.id}
+									value={member.id}>
+									{member.name}
+								</option>
+							))}
+						</>
+					) : null}
+				</select>
+			</div>
+			<style jsx>{`
+				input {
+					border: 1px solid black;
+				}
+				.invalid {
+					border: 1px solid red;
+				}
+			`}</style>
+			<button type="submit">Add Task</button>
+		</form>
+	)
 }
 
-export default AddTaskForm;
+export default AddTaskForm
