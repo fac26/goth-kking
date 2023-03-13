@@ -40,6 +40,8 @@ export default function Members() {
       }}></form>
 			<h1>Space:{pathArr[1]}</h1>
 			<br></br>
+			<h2>Invite others to your space!</h2>
+			<br></br>
 			<Auth
           supabaseClient={supabase}
 		  providers={['magic_link']}
