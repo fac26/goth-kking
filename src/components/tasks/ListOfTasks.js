@@ -3,19 +3,25 @@ import Task from './Task'
 
 function ListOfTasks(props) {
 	return (
-		<ul>
-			{props.tasks.map((individualtask) => {
-				return (
-					<Task
-						key={individualtask.id}
-						id={individualtask.id}
-						taskName={individualtask.taskName}
-						assignedMember={individualtask.assignedMember}
-						taskPoints={individualtask.taskPoints}
-					/>
-				)
-			})}
-		</ul>
+		<>
+			{props.tasks ? (
+				<ul>
+					{props.tasks.map((individualtask) => {
+						return (
+							<Task
+								key={individualtask.id}
+								id={individualtask.id}
+								taskName={individualtask.taskName}
+								assignedMember={individualtask.assignedMember}
+								taskPoints={individualtask.taskPoints}
+							/>
+						)
+					})}
+				</ul>
+			) : (
+				<p>Please choose the space</p>
+			)}
+		</>
 	)
 }
 
