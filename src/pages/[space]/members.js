@@ -55,8 +55,8 @@ export default function Members() {
           }}
         >
         </Auth>
-			{/* <AddMember /> */}
-			{/* <ListOfMembers members={members}/> */}
+		<h2>Current members in space:</h2>
+			<ListOfMembers members={members}/> 
 		</Layout>
 	)
 }
