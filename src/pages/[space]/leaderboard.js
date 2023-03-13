@@ -8,7 +8,7 @@ function Leaderboard() {
 
 	return (
 		<Layout id={pathArr[1]}>
-			<Ranking />
+			<Ranking spaceId={pathArr[1]} />
 		</Layout>
 	)
 }
