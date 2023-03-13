@@ -10,8 +10,6 @@ function SpaceList({ spaces }) {
 							key={spaceitem.id}
 							id={spaceitem.id}>
 
-							{spaceitem.name}
-
 							<Link href={spaceitem.id.toString()}>{spaceitem.name}</Link>
 						</li>
 					))}
