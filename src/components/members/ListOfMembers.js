@@ -6,12 +6,15 @@ function ListOfMembers(props) {
 		<ul>
 			{props.members.map((spaceMember) => {
 				return (
-					<Member
+                    <>				
+                    <Member
 						key={spaceMember.id}
 						id={spaceMember.id}
 						name={spaceMember.name}
 						email={spaceMember.email}
 					/>
+                    </>
+
 				)
 			})}
 		</ul>

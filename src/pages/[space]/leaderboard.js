@@ -1,5 +1,4 @@
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
-import { useUser } from '@supabase/auth-helpers-react'
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 import Layout from 'components/Layout'
 
@@ -12,6 +11,7 @@ export default function LeaderboardPage() {
 	console.log(path, pathArr, user)
 	return (
 		<Layout id={pathArr[1]}>
+		
 	 <div>Loading...LeaderboardPage</div>
 	 </Layout>
 	)

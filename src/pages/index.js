@@ -1,7 +1,6 @@
 import { Auth } from '@supabase/auth-ui-react'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Account from '@components/Account'
-
 import Login from '../components/spaces/CreateSpace'
 import CreateSpace from '../components/spaces/CreateSpace'
 import { userAgent } from 'next/server'
