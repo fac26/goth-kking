@@ -42,6 +42,7 @@ export default function Members() {
 			<br></br>
 			<Auth
           supabaseClient={supabase}
+		  providers={['magic_link']}
           view="magic_link"
           authLayout="centered"
           magicLink={{
