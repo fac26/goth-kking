@@ -33,9 +33,7 @@ function LandingPage() {
 					<div>Info about GOTH</div>
 				</>
 			) : (
-				<>
-					{/**add list of this user spaces */}
-				</>
+				<>{/**add list of this user spaces */}</>
 			)}
 		</div>
 	)

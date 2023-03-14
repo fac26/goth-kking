@@ -11,11 +11,9 @@ function HomePage() {
 	const supabase = useSupabaseClient()
 	const user = useUser()
 	const router = useRouter()
-	const path = router.asPath.slice(1)
-	const pathArr = router.asPath.split('/')
 	const [spaces, setSpaces] = useState('')
 
-	const addSpaceHanler = async (nameOfSpace) => {
+	const addSpaceHandler = async (nameOfSpace) => {
 		const spacesResponse = await supabase
 			.from('spaces')
 			.insert([{ name: nameOfSpace }])
@@ -27,12 +25,19 @@ function HomePage() {
 		}
 		console.log(spacesResponse.data[0].id)
 
-		const userCreatedResponse = await supabase.rpc('add_member', {
-			email: user.email,
+		const userCreatedResponse = await supabase.from('space_members').insert({
+			member_email: user.email,
 			space_id: spacesResponse.data[0].id,
-			nick_name: '',
-			is_admin: true
+			member_nickname: '',
+			is_admin: true,
+			user_id: user.id // set the user_id column to the ID of the authenticated user
 		})
+
+		if (userCreatedResponse.error) {
+			console.error(error)
+		} else {
+			console.log('New member added successfully!')
+		}
 
 		console.log(userCreatedResponse)
 
@@ -49,7 +54,6 @@ function HomePage() {
 	}, [session])
 
 	async function getSpaceList() {
-		console.log(user, ' line 54')
 		if (!session) {
 			return
 		}
@@ -73,21 +77,20 @@ function HomePage() {
 	return (
 		//layout insert
 		<Layout>
-		<div className="container">
+			<div className="container">
 				<>
 					<CreateSpace
 						session={session}
 						user={user}
-						addSpace={addSpaceHanler}
+						addSpace={addSpaceHandler}
 					/>
 					<SpaceList
 						session={session}
 						user={user}
 						spaces={spaces}
 					/>
-					</>
-					
-		</div>
+				</>
+			</div>
 		</Layout>
 	)
 }

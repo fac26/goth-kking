@@ -57,4 +57,4 @@ const AddMember = () => {
 
 export default AddMember
 
-//want to invite member by magic link 
+//want to invite member by magic link

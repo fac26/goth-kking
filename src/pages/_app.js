@@ -6,15 +6,14 @@ import { useState } from 'react'
 function MyApp({ Component, pageProps }) {
 	const [supabase] = useState(() => createBrowserSupabaseClient())
 	return (
-		
 		<SessionContextProvider
 			supabaseClient={supabase}
 			initialSession={pageProps.initialSession}>
 			<Component {...pageProps} />
 		</SessionContextProvider>
-	);
-};
+	)
+}
 export default MyApp
 
-//add topbar 
+//add topbar
 //refactor into a component (navbar)
