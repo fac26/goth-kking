@@ -1,4 +1,7 @@
+How to access:
+
 https://goth-kking.vercel.app/
+Deployment on main has the latest changes
 
 Functionality:  
 
@@ -8,6 +11,10 @@ Functionality:
 - Create a task and display it on the page (not added to db yet)
 - If you're not currently in a space: members, tasks and leaderboard will be locked
 - View space members and their points on the leaderboards (just trust us)
+
+![image](https://user-images.githubusercontent.com/105356599/225071421-2ba73199-43d1-44e2-a982-c679911bd7b2.png)
+
+
 - On the members page, you can invite people through a magic link, but that is a bit of a diversion. It's only signing in and out.
 - Some components are not being used.
 
