@@ -1,4 +1,18 @@
-# Project Documentation
+https://goth-kking.vercel.app/
+
+Functionality:  
+
+- Create an account, log in.
+- Create a space and enter the space through dynamic routes
+- Cool side bar and site logo
+- Create a task and display it on the page (not added to db yet)
+- If you're not currently in a space: members, tasks and leaderboard will be locked
+- View space members and their points on the leaderboards (just trust us)
+- On the members page, you can invite people through a magic link, but that is a bit of a diversion. It's only signing in and out.
+- Some components are not being used.
+
+<details>
+<summary>Project Documentation</summary>
 
 ### Introduction
 
@@ -113,6 +127,5 @@ Maintain
 
 Is it easy for someone make changes to the codebase?
 Could a new person quickly be onboarded to contribute?
-
 
 </details>
