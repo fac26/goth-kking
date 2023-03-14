@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.supabase-auth-ui_ui-anchor {
+    display: none !important;
+  }

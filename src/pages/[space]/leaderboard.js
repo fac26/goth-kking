@@ -1,3 +1,4 @@
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/router'
 import Layout from '@components/Layout'
 import Ranking from '@components/Ranking'
