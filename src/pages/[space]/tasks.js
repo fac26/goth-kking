@@ -92,10 +92,7 @@ function Tasks() {
 		<>
 			<Layout id={pathArr[1]}>
 				<button>AddTask</button>
-				<AddTaskForm
-					members={members}
-					onAddTask={addTaskHandler}
-				/>
+				<AddTaskForm onAddTask={addTaskHandler} />
 				<ListOfTasks tasks={tasks} />
 			</Layout>
 		</>

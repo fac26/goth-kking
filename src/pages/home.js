@@ -11,7 +11,7 @@ function Space() {
 
 	//should be getServersideprops, otherwise it will render same for all spaces
 	return (
-		<Layout id={path}>
+		<Layout>
 			<h1>This is a home page</h1>
 		</Layout>
 	)
