@@ -5,7 +5,6 @@ function Task(props) {
 
 	return (
 		<li>
-			<input type="checkbox" />
 			<div>
 				<h3>{props.taskName}</h3>
 				<p>{props.taskDescription}</p>
@@ -14,6 +13,7 @@ function Task(props) {
 				<p>{props.taskPoints}</p>
 			</div>
 			<button onClick={addCommentHandler}>Add comment</button>
+			<button>Assign</button>
 		</li>
 	)
 }
