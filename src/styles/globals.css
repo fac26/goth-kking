@@ -3,5 +3,10 @@
 @tailwind utilities;
 
 .supabase-auth-ui_ui-anchor {
-    display: none !important;
-  }
+	display: none !important;
+}
+
+.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}

@@ -21,20 +21,21 @@ export default function Layout({ id, children }) {
 	useEffect(() => {
 		setPathId(id)
 	}, [id])
+
 	const [open, setOpen] = useState(true)
 	const menus = [
-		{ title: 'Home', icon: <HomeIcon />, path: `/${pathId}` },
-		{ title: 'Spaces', icon: <UserGroupIcon />, path: `/user-profile` },
-		{ title: 'Members', icon: <UserIcon />, path: `/${pathId}/members` },
-		{ title: 'Tasks', icon: <CreditCardIcon />, path: `/${pathId}/tasks` },
-		{
-			title: 'Leaderboard',
-			icon: <TrophyIcon />,
-			path: `/${pathId}/leaderboard`
-		}
-	]
+		{ title: 'Home', icon: <HomeIcon />, path: `/${pathId}`, disabled: false },
+		{ title: 'Spaces', icon: <UserGroupIcon />, path: '/user-profile', disabled: false },
+		{ title: 'Members', icon: <UserIcon />, path: `/${pathId}/members`, disabled: pathId === undefined },
+		{ title: 'Tasks', icon: <CreditCardIcon />, path: `/${pathId}/tasks`, disabled: pathId === undefined },
+		{ title: 'Leaderboard', icon: <TrophyIcon />, path: `/${pathId}/leaderboard`, disabled: pathId === undefined }
+	  ];
+	  
 	// { title: "Landing Page", icon: <BookOpenIcon/>, path: "/landingpage"}
 
+	// if (pathId === 'undefined') {
+	// 	//lock the other navbar items
+	// }
 	const router = useRouter()
 	return (
 		<>
@@ -69,19 +70,22 @@ export default function Layout({ id, children }) {
 										href={menu.path}
 										className={`${
 											!open && 'hidden'
-										} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 hover:bg-black rounded-md ${
+										} origin-left duration-200 text-white text-sm flex items-center gap-x-4 cursor-pointer p-2 rounded-md ${
 											router.asPath === menu.path && 'bg-black'
-										}`}>
+										} ${menu.disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-black'}`
+										}
+										onClick={(e) => menu.disabled && e.preventDefault()}
+										>
 										<span className="inline-block w-6 h-6">{menu.icon}</span>
 										{menu.title}
-									</Link>
+										</Link>
 								</li>
 							))}
 						</ul>
 						{open && (
 							<button
 								className={`text-white`}
-								onClick={() => supabase.auth.signOut()}>
+								onClick={() => supabase.auth.signOut() && router.push('/')}>
 								Sign Out
 							</button>
 						)}
