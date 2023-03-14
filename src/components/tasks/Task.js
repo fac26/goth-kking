@@ -9,7 +9,6 @@ function Task(props) {
 			<div>
 				<h3>{props.taskName}</h3>
 				<p>{props.taskDescription}</p>
-				<p>{props.assignedMember}</p>
 			</div>
 			<div>
 				<p>{props.taskPoints}</p>

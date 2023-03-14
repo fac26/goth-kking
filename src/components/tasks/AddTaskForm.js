@@ -6,14 +6,13 @@ function AddTaskForm(props) {
 	const taskNameRef = useRef()
 	const taskDescriptionRef = useRef()
 	const taskPointsRef = useRef()
-	const taskAssigneeRef = useRef()
 
 	//const [frequency, setFrequency] = useState('weekly')
 	const [formInputValidity, setformInputValidity] = useState({
 		taskname: true,
 		taskDescription: true,
-		taskPoints: true,
-		taskAssignee: true
+		taskPoints: true
+		//taskAssignee: true
 	})
 
 	//to add more classes here
@@ -26,53 +25,44 @@ function AddTaskForm(props) {
 	const taskPointsControlClasses = `${
 		formInputValidity.taskPoints ? '' : 'invalid'
 	}`
-	const taskAssigneeControlClasses = `${
-		formInputValidity.taskPoints ? '' : 'invalid'
-	}`
+
 	const submitTaskHandler = (event) => {
 		event.preventDefault()
 
 		const enteredTaskName = taskNameRef.current.value
 		const enteredTaskDescription = taskDescriptionRef.current.value
 		const enteredTaskPoints = taskPointsRef.current.value
-		const enteredTaskAssignee = taskAssigneeRef.current.value
 
 		const enteredTaskNameIsValid = !isEmpty(enteredTaskName)
 		const enteredTaskDescriptionIsValid = !isEmpty(
 			taskDescriptionRef.current.value
 		)
 		const enteredTaskPointsIsValid = Number(enteredTaskPoints) > 0
-		const enteredTaskAssigneeIsValid = !isEmpty(enteredTaskAssignee)
 
 		setformInputValidity({
 			taskname: enteredTaskNameIsValid,
 			taskDescription: enteredTaskDescriptionIsValid,
-			taskPoints: enteredTaskPointsIsValid,
-			taskAssignee: enteredTaskAssigneeIsValid
+			taskPoints: enteredTaskPointsIsValid
 		})
 
 		const formIsValid =
 			enteredTaskNameIsValid &&
 			enteredTaskDescriptionIsValid &&
-			enteredTaskPointsIsValid &&
-			enteredTaskAssigneeIsValid
+			enteredTaskPointsIsValid
+
 		if (!formIsValid) {
 			return
 		}
 
-		//post req to db
-
 		props.onAddTask({
 			taskName: enteredTaskName,
 			taskDescription: enteredTaskDescription,
-			taskPoints: enteredTaskPoints,
-			taskAssignee: enteredTaskAssignee
+			taskPoints: enteredTaskPoints
 		})
 
 		taskNameRef.current.value = ''
 		taskDescriptionRef.current.value = ''
 		taskPointsRef.current.value = ''
-		taskAssigneeRef.current.value = ''
 	}
 	return (
 		<form onSubmit={submitTaskHandler}>
@@ -110,7 +100,7 @@ function AddTaskForm(props) {
 					//onFocus={removeInvalidClassHandler}
 				/>
 			</div>
-			<div>
+			{/* <div>
 				<label htmlFor="member">Assign member to task</label>
 				<select
 					id="member"
@@ -130,7 +120,7 @@ function AddTaskForm(props) {
 						</>
 					) : null}
 				</select>
-			</div>
+			</div> */}
 			<style jsx>{`
 				input {
 					border: 1px solid black;

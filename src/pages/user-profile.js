@@ -25,12 +25,19 @@ function HomePage() {
 		}
 		console.log(spacesResponse.data[0].id)
 
-		const userCreatedResponse = await supabase.rpc('add_member', {
-			email: user.email,
+		const userCreatedResponse = await supabase.from('space_members').insert({
+			member_email: user.email,
 			space_id: spacesResponse.data[0].id,
-			nick_name: '',
-			is_admin: true
+			member_nickname: '',
+			is_admin: true,
+			user_id: user.id // set the user_id column to the ID of the authenticated user
 		})
+
+		if (userCreatedResponse.error) {
+			console.error(error)
+		} else {
+			console.log('New member added successfully!')
+		}
 
 		console.log(userCreatedResponse)
 

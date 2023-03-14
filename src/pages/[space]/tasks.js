@@ -7,9 +7,6 @@ import ListOfTasks from 'components/tasks/ListOfTasks'
 import Layout from 'components/Layout'
 import AddTaskForm from 'components/tasks/AddTaskForm'
 import { useState, useEffect } from 'react'
-const tasklist = [
-	{ id: 1, taskName: 'task 1', assignedMember: 'basil', taskPoints: 10 }
-]
 
 function Tasks() {
 	const user = useUser()
@@ -22,16 +19,17 @@ function Tasks() {
 	const session = useSession()
 
 	const [members, setMembers] = useState('')
-	const [task, setTask] = useState('')
+	const [tasks, setTasks] = useState('')
 
 	useEffect(() => {
 		getSpaceMembers()
+		getTasksBySpaceId(pathArr[1])
 		//getSpaceTasks()
 		if (!session) {
 			router.push('/') //when navigates to page shows error
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [session])
+	}, [session, pathArr[1]])
 
 	const getSpaceMembers = async () => {
 		if (!session) {
@@ -52,19 +50,40 @@ function Tasks() {
 		//router.push('/tasks')
 	}
 
+	const getTasksBySpaceId = async (spaceId) => {
+		const { data, error } = await supabase
+			.from('tasks')
+			.select('*')
+			.eq('space_id', spaceId)
+
+		if (error) {
+			console.error(error)
+			return null
+		}
+
+		setTasks(data)
+	}
+
+	// const tasksDB = getTasksBySpaceId(pathArr[1])
+	// console.log(tasksDB)
+
 	const addTaskHandler = async (task) => {
 		const newTask = {
 			name: task.taskName,
 			description: task.taskDescription,
-			spaceId: pathArr[1],
-			taskPoints: task.taskPoints,
-			createdByUserId: user.id,
-			assigneeId: task.taskAssignee
+			space_id: pathArr[1],
+			task_points: task.taskPoints,
+			current_user_id: user.id
 		}
-		console.log(newTask)
+
 		try {
-			const spacesResponse = await supabase.rpc('add_task', newTask)
+			const spacesResponse = await supabase
+				.from('tasks')
+				.insert([newTask])
+				.select()
 			console.log(spacesResponse)
+			setTasks((prevState) => [...prevState, spacesResponse.data[0]])
+			getTasksBySpaceId(pathArr[1]) // <-- Update tasks state after adding new task
 		} catch (error) {
 			console.error(error.message)
 		}
@@ -78,7 +97,7 @@ function Tasks() {
 					members={members}
 					onAddTask={addTaskHandler}
 				/>
-				<ListOfTasks tasks={tasklist} />
+				<ListOfTasks tasks={tasks} />
 			</Layout>
 		</>
 	)

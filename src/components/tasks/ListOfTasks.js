@@ -11,9 +11,9 @@ function ListOfTasks(props) {
 							<Task
 								key={individualtask.id}
 								id={individualtask.id}
-								taskName={individualtask.taskName}
-								assignedMember={individualtask.assignedMember}
-								taskPoints={individualtask.taskPoints}
+								taskName={individualtask.name}
+								taskDescription={individualtask.description}
+								taskPoints={individualtask.points}
 							/>
 						)
 					})}
