@@ -26,7 +26,7 @@ export default function Layout({ id, children }) {
 
 	const [open, setOpen] = useState(true)
 	const menus = [
-		{ title: 'Home', icon: <HomeIcon />, path: `/${pathId}`, disabled: false },
+		{ title: 'Home', icon: <HomeIcon />, path: `/home`, disabled: false },
 		{
 			title: 'Spaces',
 			icon: <UserGroupIcon />,

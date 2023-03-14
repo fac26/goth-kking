@@ -4,10 +4,10 @@ import Layout from 'components/Layout'
 import AddMember from 'components/members/AddMember'
 import { useRouter } from 'next/router'
 import ListOfMembers from 'components/members/ListOfMembers'
-import { Auth} from '@supabase/auth-ui-react'
+import { Auth } from '@supabase/auth-ui-react'
 import { useState } from 'react'
 
-const members = [{name:'Mr Smith', email:'example@test.uk', id: '1'}]
+const members = [{ name: 'Mr Smith', email: 'example@test.uk', id: '1' }]
 export default function Members() {
 	const user = useUser()
 	const supabase = useSupabaseClient()
@@ -18,48 +18,43 @@ export default function Members() {
 	console.log(path) // 130/members
 	//if undefined it gives: "", undefined, members
 	//if 130 it gives: '', 130, members
-	
 
 	// state to hold email input value
 	// const [email, setEmail] = useState('');
 	// const session = useSession()
-  
+
 	// define function to handle magic link sending
-	const handleMagicLink = async ({ email }) => {
-	  try {
-		const { error } = await supabase.auth.signIn({ email });
-		if (error) throw error;
-		alert('Check your email for the magic link!')
-	  } catch (error) {
-		alert(error.message)
-	  }
+
+	const addNewMember = async () => {
+		const userCreatedResponse = await supabase.from('space_members').insert({
+			member_email: user.email,
+			space_id: spacesResponse.data[0].id,
+			member_nickname: '',
+			is_admin: true,
+			user_id: user.id // set the user_id column to the ID of the authenticated user
+		})
+
+		if (userCreatedResponse.error) {
+			console.error(error)
+		} else {
+			console.log('New member added successfully!')
+		}
 	}
 
 	return (
 		<Layout id={pathArr[1]}>
-			<form onSubmit={(event) => {
-        event.preventDefault();
-        handleMagicLink({ email });
-      }}></form>
 			<h1>Space:{pathArr[1]}</h1>
 			<br></br>
 			<h2>Invite others to your space!</h2>
 			<br></br>
+			{/* <AddMember /> */}
 			<Auth
-          supabaseClient={supabase}
-		  providers={['magic_link']}
-          view="magic_link"
-          authLayout="centered"
-          magicLink={{
-            getURL: async (email) => {
-              const { error } = await supabase.auth.signIn({ email });
-              if (error) throw error;
-            }
-          }}
-        >
-        </Auth>
-		<h2>Current members in space:</h2>
-			<ListOfMembers members={members}/> 
+				supabaseClient={supabase}
+				providers={['magic_link']}
+				view="magic_link"
+				authLayout="centered"></Auth>
+			<h2>Current members in space:</h2>
+			<ListOfMembers members={members} />
 		</Layout>
 	)
 }
