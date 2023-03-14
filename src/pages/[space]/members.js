@@ -12,14 +12,17 @@ export default function Members() {
 	const user = useUser()
 	const supabase = useSupabaseClient()
 	const router = useRouter()
-	const path = router.asPath.slice(1)
+	const path = router.asPath.slice(1) //this doesn't give anything
 	const pathArr = router.asPath.split('/')
-	console.log(path, pathArr, user)
+	console.log(pathArr) // ['', 130, members]
+	console.log(path) // 130/members
+	//if undefined it gives: "", undefined, members
+	//if 130 it gives: '', 130, members
+	
 
-	  
 	// state to hold email input value
-	const [email, setEmail] = useState('');
-	const session = useSession()
+	// const [email, setEmail] = useState('');
+	// const session = useSession()
   
 	// define function to handle magic link sending
 	const handleMagicLink = async ({ email }) => {

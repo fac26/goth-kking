@@ -15,7 +15,6 @@ function Tasks() {
 	const path = router.asPath.slice(1)
 	const pathArr = router.asPath.split('/')
 
-	//
 	const session = useSession()
 
 	const [members, setMembers] = useState('')
