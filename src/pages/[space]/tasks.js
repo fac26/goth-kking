@@ -1,7 +1,6 @@
 //localhost:3000/tasks
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useUser } from '@supabase/auth-helpers-react'
-
 import { useRouter } from 'next/router'
 import ListOfTasks from 'components/tasks/ListOfTasks'
 import Layout from 'components/Layout'
