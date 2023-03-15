@@ -13,38 +13,6 @@ function HomePage() {
 	const router = useRouter()
 	const [spaces, setSpaces] = useState('')
 
-	const addSpaceHandler = async (nameOfSpace) => {
-		const spacesResponse = await supabase
-			.from('spaces')
-			.insert([{ name: nameOfSpace }])
-			.select()
-
-		if (spacesResponse.error) {
-			//console.log(spacesResponse.error)
-			return
-		}
-		console.log(spacesResponse.data[0].id)
-
-		const userCreatedResponse = await supabase.from('space_members').insert({
-			member_email: user.email,
-			space_id: spacesResponse.data[0].id,
-			member_nickname: '',
-			is_admin: true,
-			user_id: user.id // set the user_id column to the ID of the authenticated user
-		})
-
-		if (userCreatedResponse.error) {
-			console.error(error)
-		} else {
-			console.log('New member added successfully!')
-		}
-
-		console.log(userCreatedResponse)
-
-		getSpaceList()
-		//router.push('/tasks')
-	}
-
 	useEffect(() => {
 		getSpaceList()
 		if (!session) {
@@ -53,21 +21,66 @@ function HomePage() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session])
 
+	const addSpaceHandler = async (nameOfSpace) => {
+		const { data: spaces, error: spacesError } = await supabase
+			.from('spaces')
+			.insert([{ name: nameOfSpace }])
+			.select()
+
+		if (spacesError) {
+			console.log(spacesError)
+			return
+		}
+
+		const { data: userCreated, error: userCreatedError } = await supabase
+			.from('space_members')
+			.insert({
+				member_email: user.email,
+				space_id: spaces[0].id,
+				is_admin: true,
+				user_id: user.id // set the user_id column to the ID of the authenticated user
+			})
+
+		if (userCreatedError) {
+			console.error(userCreatedError)
+		} else {
+			console.log('New member added successfully!')
+		}
+
+		getSpaceList()
+	}
+
 	async function getSpaceList() {
 		if (!session) {
 			return
 		}
 
-		//we pass second second arg to rpc {email:user.email}, this is how we can add args to function we defined as get_spaces(email)
-		const currentUserMemberOfList = await supabase.rpc('get_spaces', {
-			email: user.email
-		})
+		const { data: spaceMembers, error: spaceMembersError } = await supabase
+			.from('space_members')
+			.select('space_id, member_email, member_nickname')
+			.eq('member_email', user.email)
 
-		const spaceNames = currentUserMemberOfList.data.map((spaceObj) => ({
-			name: spaceObj.name,
-			id: spaceObj.id
+		if (spaceMembersError) {
+			console.error(spaceMembersError)
+			return
+		}
+
+		const spaceIds = spaceMembers.map((member) => member.space_id)
+
+		const { data: spaces, error: spacesError } = await supabase
+			.from('spaces')
+			.select('id, name')
+			.in('id', spaceIds)
+
+		if (spacesError) {
+			//console.error(spacesError)
+			return
+		}
+
+		const spaceNames = spaces.map((space) => ({
+			id: space.id,
+			name: space.name
 		}))
-
 		setSpaces(spaceNames)
 	}
 
