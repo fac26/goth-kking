@@ -15,7 +15,7 @@ function LandingPage() {
 
 	useEffect(() => {
 		if (session) {
-			console.log(router.query, ' query')
+			//console.log(router.query, ' query')
 			router.push('/user-profile')
 		}
 	}, [session])

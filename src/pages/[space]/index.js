@@ -7,7 +7,7 @@ function Space() {
 	const supabase = useSupabaseClient()
 	const router = useRouter()
 	const path = router.asPath.slice(1) //  146
-	console.log(path, user)
+	//console.log(path, user)
 
 	//should be getServersideprops, otherwise it will render same for all spaces
 	return (

@@ -5,40 +5,68 @@ import AddMember from 'components/members/AddMember'
 import { useRouter } from 'next/router'
 import ListOfMembers from 'components/members/ListOfMembers'
 import { Auth } from '@supabase/auth-ui-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
-const members = [{ name: 'Mr Smith', email: 'example@test.uk', id: '1' }]
 export default function Members() {
 	const user = useUser()
+	const session = useSession()
 	const supabase = useSupabaseClient()
 	const router = useRouter()
 	const path = router.asPath.slice(1) //this doesn't give anything
 	const pathArr = router.asPath.split('/')
-	console.log(pathArr) // ['', 130, members]
-	console.log(path) // 130/members
-	//if undefined it gives: "", undefined, members
-	//if 130 it gives: '', 130, members
 
-	// state to hold email input value
-	// const [email, setEmail] = useState('');
-	// const session = useSession()
+	const [members, setMembers] = useState('')
 
-	// define function to handle magic link sending
+	useEffect(() => {
+		getMembersBySpaceId(pathArr[1])
+		//getSpaceTasks()
+		if (!session) {
+			router.push('/') //when navigates to page shows error
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [session, pathArr[1]])
 
-	const addNewMember = async () => {
-		const userCreatedResponse = await supabase.from('space_members').insert({
-			member_email: user.email,
-			space_id: spacesResponse.data[0].id,
-			member_nickname: '',
-			is_admin: true,
-			user_id: user.id // set the user_id column to the ID of the authenticated user
-		})
-
-		if (userCreatedResponse.error) {
+	const addNewMemberHandler = async (member) => {
+		const newMember = {
+			member_email: member.memberEmail,
+			space_id: pathArr[1]
+		}
+		console.log(newMember)
+		const { data, error } = await supabase
+			.from('space_members')
+			.insert([newMember])
+			.select()
+		if (error) {
 			console.error(error)
 		} else {
-			console.log('New member added successfully!')
+			const newMember = {
+				id: data[0].id,
+				email: data[0].member_email
+			}
+			setMembers((prevMembers) => [...prevMembers, newMember])
 		}
+	}
+
+	const getMembersBySpaceId = async (spaceId) => {
+		const { data, error } = await supabase
+			.from('space_members')
+			.select('*')
+			.eq('space_id', spaceId)
+
+		if (error) {
+			//console.error(error)
+			return
+		}
+
+		let spaceMembers = []
+		if (data) {
+			spaceMembers = data.map((member) => ({
+				id: member.id,
+				email: member.member_email
+			}))
+		}
+
+		setMembers(spaceMembers)
 	}
 
 	return (
@@ -47,12 +75,13 @@ export default function Members() {
 			<br></br>
 			<h2>Invite others to your space!</h2>
 			<br></br>
-			{/* <AddMember /> */}
-			<Auth
+			<AddMember onAddMember={addNewMemberHandler} />
+			{/* <Auth
 				supabaseClient={supabase}
 				providers={['magic_link']}
 				view="magic_link"
-				authLayout="centered"></Auth>
+				authLayout="centered"
+				></Auth> */}
 			<h2>Current members in space:</h2>
 			<ListOfMembers members={members} />
 		</Layout>
