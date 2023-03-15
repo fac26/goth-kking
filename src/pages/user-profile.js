@@ -57,7 +57,7 @@ function HomePage() {
 
 		const { data: spaceMembers, error: spaceMembersError } = await supabase
 			.from('space_members')
-			.select('space_id, member_email, member_nickname')
+			.select('space_id, member_email')
 			.eq('member_email', user.email)
 
 		if (spaceMembersError) {

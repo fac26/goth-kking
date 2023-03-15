@@ -21,7 +21,7 @@ function Tasks() {
 	const [tasks, setTasks] = useState('')
 
 	useEffect(() => {
-		getSpaceMembers()
+		// getSpaceMembers()
 		getTasksBySpaceId(pathArr[1])
 		//getSpaceTasks()
 		if (!session) {
@@ -30,24 +30,27 @@ function Tasks() {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [session, pathArr[1]])
 
-	const getSpaceMembers = async () => {
-		if (!session) {
-			return
-		}
+	// const getSpaceMembers = async () => {
+	// 	if (!session) {
+	// 		return
+	// 	}
 
-		const spacesResponse = await supabase.rpc('get_members', {
-			sp_id: pathArr[1]
-		})
+	// 	const spacesResponse = await supabase.rpc('get_members', {
+	// 		sp_id: pathArr[1]
+	// 	})
 
-		const spaceMembers = spacesResponse.data.map((member) => ({
-			id: member.member_id,
-			name: member.member_nickname
-		}))
-		setMembers(spaceMembers)
+	// 	console.log(pathArr[1])
+	// 	const spaceMembers = spacesResponse.data.map((member) => ({
+	// 		id: member.member_id,
+	// 		email: member.member_email
+	// 	}))
 
-		console.log(members)
-		//router.push('/tasks')
-	}
+	// 	setMembers(spaceMembers)
+
+	// 	console.log(spaceMembers)
+	// 	console.log(members)
+	// 	//router.push('/tasks')
+	// }
 
 	const getTasksBySpaceId = async (spaceId) => {
 		const { data, error } = await supabase
