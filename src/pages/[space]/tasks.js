@@ -98,15 +98,17 @@ function Tasks() {
 	}
 	
 	//write from here
+	let rotationPosition = 0;
+
 	const addTaskInRotationHandler = async (e) =>  {
 		e.preventDefault()
-
-		let rotationPosition = 0;
-		rotationPosition = (rotationPosition + 1) % memberId.length
 		
 		console.log(taskId) //66 
 		console.log(memberId) //[56, 112, 113]
+		//we have to iterate through every task now, not just one task
+		//maybe store every task into an array? and then iterate through that?
 		for (let i = 0; i < memberId.length; i++) {
+			rotationPosition ++
 			try {
 				const {data, error } = await supabase
 					.from('rotation')
@@ -123,8 +125,8 @@ function Tasks() {
 				console.error(error)
 			}
 		}
+
 	}
-	
 	
 	return (
 		<>
