@@ -1,38 +1,32 @@
-import React, { useState } from 'react'
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
-import { Auth } from '@supabase/auth-ui-react'
-import { createClient } from '@supabase/supabase-js'
-// import useSupabaseAuth form ''
+import React, { useState, useRef } from 'react'
 
-const AddMember = () => {
+const isEmpty = (value) => value.trim() === ''
+
+const AddMember = (props) => {
 	// const { user } = useSupabaseAuth()
-	const [formData, setFormData] = useState({ name: '', email: '' })
-	const [errors, setErrors] = useState({})
-	const supabase = useSupabaseClient()
-	const handleInputChange = (event) => {
-		setFormData({
-			...formData,
-			[event.target.name]: event.target.value
-		})
-	}
+	const emailRef = useRef()
+
+	const [formInputValidity, setformInputValidity] = useState({
+		memberemail: true
+	})
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault()
-		setErrors({})
-		// console.log(formData)
+		const enteredEmail = emailRef.current.value
 
-		try {
-			const { email } = formData
-			const { error } = await supabase.auth.signIn({ email }, { redirectTo: window.location.href })
+		const enteredEmailIsValid = !isEmpty(enteredEmail)
 
-			if (error) {
-				throw error
-			}
-			console.log(`Invitation sent to ${email}`)
+		setformInputValidity({
+			memberemail: enteredEmailIsValid
+		})
 
-		} catch (error) {
-			setErrors( {email: error.message } )
-		 }
+		const formIsValid = enteredEmailIsValid
+		if (!formIsValid) {
+			return
+		}
+		props.onAddMember({
+			memberEmail: enteredEmail
+		})
 	}
 
 	return (
@@ -45,11 +39,10 @@ const AddMember = () => {
 					type="email"
 					id="email"
 					name="email"
-					value={formData.email}
-					onChange={handleInputChange}
+					ref={emailRef}
 				/>
-				{errors.email && <p>{errors.email}</p>}
 			</div>
+
 			<button type="submit">Invite</button>
 		</form>
 	)
