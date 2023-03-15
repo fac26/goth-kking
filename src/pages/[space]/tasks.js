@@ -18,8 +18,8 @@ function Tasks() {
 
 	const [members, setMembers] = useState('')
 	const [tasks, setTasks] = useState('')
-	const [taskId, setTaskId] = useState('')
-	const [memberId, setMemberId] = useState([])
+	const [taskIds, setTaskIds] = useState([])
+	const [memberIds, setMemberIds] = useState([])
 
 	useEffect(() => {
 		// getSpaceMembers()
@@ -47,6 +47,18 @@ function Tasks() {
 	}
 	console.log(tasks)
 
+	let listOfTaskIds = [];
+	useEffect(() => {
+		
+		for (let i = 0; i < tasks.length; i++) {
+		  //console.log(tasks[i].id)
+		  listOfTaskIds.push(tasks[i].id)
+		}
+		setTaskIds(listOfTaskIds)
+	  }, [tasks]);
+	  
+	console.log(taskIds)
+
 	const getMembersBySpaceId = async (spaceId) => {
 		const { data, error } = await supabase
 			.from('space_members')
@@ -66,9 +78,10 @@ function Tasks() {
 		  console.log(members[i].id)
 		  listOfMemberIds.push(members[i].id)
 		}
-		setMemberId(listOfMemberIds)
+		setMemberIds(listOfMemberIds)
 	  }, [members]);
 	  
+	
 
 	const addTaskHandler = async (task) => {
 		const newTask = {
@@ -88,61 +101,62 @@ function Tasks() {
 			setTasks((prevState) => [...prevState, spacesResponse.data[0]])
 			getTasksBySpaceId(pathArr[1]) // <-- Update tasks state after adding new task
 			
-			const taskId = spacesResponse.data[0].id
-			setTaskId(taskId)
-			console.log(taskId) //61 so the last inserted task
+			const taskIds = spacesResponse.data[0].id
+			
+			console.log(taskIds) //61 so the last inserted task
 
 		} catch (error) {
 			console.error(error)
 		}
 	}
-	
-	//write from here
+		//write from here
 	let rotationPosition = 0;
 
 	const addTaskInRotationHandler = async (e) =>  {
 		e.preventDefault()
 		
-		console.log(taskId) //66 
-		console.log(memberId) //[56, 112, 113]
-		//we have to iterate through every task now, not just one task
-		//maybe store every task into an array? and then iterate through that?
-		for (let i = 0; i < memberId.length; i++) {
-			rotationPosition ++
-			try {
-				const {data, error } = await supabase
-					.from('rotation')
-					.insert([{task_id: taskId, member_id: memberId[i], rotation_position: rotationPosition}])
-					.single()
-					
-				if (error) {
-					console.error(error)
-					return
-				}
-
-				console.log('Successfully added to rotation table:', data)
-			} catch (error) {
-				console.error(error)
-			}
-		}
-
-	}
+		console.log(taskIds) //[103, 104] 
+		console.log(memberIds) //[54, 121]
 	
-	return (
-		<>
-			<Layout id={pathArr[1]}>
-				<AddTaskForm onAddTask={addTaskHandler} />
-				<button onClick={addTaskInRotationHandler}>Add to rotation table</button> 
-				{/* or onSubmit */}
-				{/* then merge the two buttons later on */}
-				<ListOfTasks
-					tasks={tasks}
-					members={members}
-				/>
-			</Layout>
-		</>
-	)
-}
+
+		for (let i = 0; i < taskIds.length; i++) {
+			for (let i = 0; i < memberIds.length; i++) {
+				(rotationPosition === memberIds.length) ? rotationPosition = 1 : rotationPosition++ //we can tweak this bit so it follows the pattern
+				//and the task_ids should change
+					try {
+						const {data, error } = await supabase
+							.from('rotation')
+							.insert([{task_id: taskIds[i], member_id: memberIds[i], rotation_position: rotationPosition}])
+							.single()
+							
+						if (error) {
+							console.error(error)
+							return
+						}
+
+						console.log('Successfully added to rotation table:', data)
+					} catch (error) {
+						console.error(error)
+					}
+				}
+			}}
+
+		return (
+			<>
+				<Layout id={pathArr[1]}>
+					<AddTaskForm onAddTask={addTaskHandler} />
+					<button onClick={addTaskInRotationHandler}>Add to rotation table</button> 
+					{/* or onSubmit */}
+					{/* then merge the two buttons later on */}
+					<ListOfTasks
+						tasks={tasks}
+						members={members}
+					/>
+					{/* {tasks && members && <ListOfTasks tasks={tasks} members={members} />} */}
+				</Layout>
+			</>
+		)
+		}
 
 export default Tasks
 
