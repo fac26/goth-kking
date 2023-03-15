@@ -30,6 +30,12 @@ export default function Layout({ id, children }) {
 		{
 			title: 'Spaces',
 			icon: <UserGroupIcon />,
+			path: '/spaces',
+			disabled: false
+		},
+		{
+			title: 'User Profile',
+			icon: <UserIcon />,
 			path: '/user-profile',
 			disabled: false
 		},
