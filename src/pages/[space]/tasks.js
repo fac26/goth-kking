@@ -76,6 +76,34 @@ function Tasks() {
 			console.error(error)
 		}
 	}
+	const assignMembersHanler = async (assignedTask) => {
+		// {assignMembers: {…}, taskId: 58}
+		// assignMembers
+		// :
+		// {space_member.id: 62: rotation_week:'3', 110: '1', 111: '2'}
+		// taskId
+		// :
+		// 58
+
+		const taskId = assignedTask.taskId
+
+		//[[id, position],[]]
+		const assignments = Object.entries(assignedTask.assignMembers)
+		const assignedMembersArray = assignments.map(
+			([memberId, rotationPosition]) => ({
+				task_id: taskId,
+				member_id: memberId,
+				rotation_position: rotationPosition
+			})
+		)
+		console.log(assignedMembersArray)
+		const { data, error } = await supabase
+			.from('rotation')
+			.insert(assignedMembersArray)
+			.select('*')
+		console.log(data)
+		//rotation table if(task_id is in and member_id is in) should update and do not insert a new row
+	}
 
 	return (
 		<>
@@ -85,6 +113,7 @@ function Tasks() {
 				<ListOfTasks
 					tasks={tasks}
 					members={members}
+					onAssign={assignMembersHanler}
 				/>
 			</Layout>
 		</>
