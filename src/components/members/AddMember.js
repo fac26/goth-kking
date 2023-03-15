@@ -1,49 +1,48 @@
-import React, { useState } from 'react'
-import { Auth } from '@supabase/auth-ui-react'
-import { useSupabaseClient } from '@supabase/auth-helpers-react'
+import React, { useState, useRef } from 'react'
 
-const AddMember = () => {
-	const [formData, setFormData] = useState({ name: '', email: '' })
-	const [errors, setErrors] = useState({})
-	const supabase = useSupabaseClient()
-	const handleInputChange = (event) => {
-		setFormData({
-			...formData,
-			[event.target.name]: event.target.value
-		})
-	}
+const isEmpty = (value) => value.trim() === ''
 
-	const handleFormSubmit = (event) => {
+const AddMember = (props) => {
+	// const { user } = useSupabaseAuth()
+	const emailRef = useRef()
+
+	const [formInputValidity, setformInputValidity] = useState({
+		memberemail: true
+	})
+
+	const handleFormSubmit = async (event) => {
 		event.preventDefault()
-		setErrors({})
-		console.log(formData)
+		const enteredEmail = emailRef.current.value
 
-		try {
-			// Submit form data to Supabase here
-		} catch (error) {
-			setErrors(error.response.data.errors)
+		const enteredEmailIsValid = !isEmpty(enteredEmail)
+
+		setformInputValidity({
+			memberemail: enteredEmailIsValid
+		})
+
+		const formIsValid = enteredEmailIsValid
+		if (!formIsValid) {
+			return
 		}
+		props.onAddMember({
+			memberEmail: enteredEmail
+		})
 	}
 
 	return (
 		<form onSubmit={handleFormSubmit}>
 			<div>
 				<h1>Invite others to your space:</h1>
-				<Auth
-					supabaseClient={supabase}
-					magicLink
-				/>
 				{/* invite link goes here */}
 				<label htmlFor="email">Email:</label>
 				<input
 					type="email"
 					id="email"
 					name="email"
-					value={formData.email}
-					onChange={handleInputChange}
+					ref={emailRef}
 				/>
-				{errors.email && <p>{errors.email}</p>}
 			</div>
+
 			<button type="submit">Invite</button>
 		</form>
 	)

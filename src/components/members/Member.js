@@ -1,6 +1,6 @@
 function Member(props) {
 	const deleteMemberHandler = () => {
-		console.log('comment added )))) ')
+		console.log('delete )))) ')
 	}
 
 	return (

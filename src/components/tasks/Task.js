@@ -1,19 +1,42 @@
-function Task(props) {
+import { useState } from 'react'
+
+function Task({ taskName, taskDescription, taskPoints, members }) {
+	const [toggleList, setToggleList] = useState(false)
+
 	const addCommentHandler = () => {
-		console.log('comment added )))) ')
+		console.log('comment added ')
+	}
+
+	const toggleMemberList = () => {
+		setToggleList(!toggleList)
 	}
 
 	return (
 		<li>
 			<div>
-				<h3>{props.taskName}</h3>
-				<p>{props.taskDescription}</p>
-				<p>{props.assignedMember}</p>
+				<h3>{taskName}</h3>
+				<p>{taskDescription}</p>
 			</div>
 			<div>
-				<p>{props.taskPoints}</p>
+				<p>{taskPoints}</p>
 			</div>
 			<button onClick={addCommentHandler}>Add comment</button>
+			<button onClick={toggleMemberList}>Assign</button>
+			<div>
+				{toggleList && (
+					<ul>
+						{members.map((member) => {
+							return (
+								<li
+									key={member.id}
+									id={member.id}>
+									{member.member_email}
+								</li>
+							)
+						})}
+					</ul>
+				)}
+			</div>
 		</li>
 	)
 }

@@ -14,6 +14,7 @@
 		"@heroicons/react": "^2.0.16",
 		"@supabase/auth-helpers-nextjs": "^0.5.5",
 		"@supabase/auth-helpers-react": "^0.3.1",
+		"@supabase/auth-ui": "github:supabase/auth-ui",
 		"@supabase/auth-ui-react": "^0.3.3",
 		"@supabase/supabase-js": "^2.10.0",
 		"next": "13.2.3",
