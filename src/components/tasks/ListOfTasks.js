@@ -14,6 +14,7 @@ function ListOfTasks(props) {
 								taskName={individualtask.name}
 								taskDescription={individualtask.description}
 								taskPoints={individualtask.points}
+								members={props.members}
 							/>
 						)
 					})}
