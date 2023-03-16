@@ -117,15 +117,17 @@ function Tasks() {
 		console.log(taskIds) //[103, 104] 
 		console.log(memberIds) //[54, 121]
 	
-
 		for (let i = 0; i < taskIds.length; i++) {
-			for (let i = 0; i < memberIds.length; i++) {
+			for (let j = 0; j < memberIds.length; j++) {
+
 				(rotationPosition === memberIds.length) ? rotationPosition = 1 : rotationPosition++ //we can tweak this bit so it follows the pattern
+				//and the task_ids should change
+				  //we can tweak this bit so it follows the pattern
 				//and the task_ids should change
 					try {
 						const {data, error } = await supabase
 							.from('rotation')
-							.insert([{task_id: taskIds[i], member_id: memberIds[i], rotation_position: rotationPosition}])
+							.insert([{task_id: taskIds[i], member_id: memberIds[j], rotation_position: rotationPosition}])
 							.single()
 							
 						if (error) {
