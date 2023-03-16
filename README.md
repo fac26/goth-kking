@@ -32,19 +32,19 @@ Functionality:
 
 ### Project plan
 
-(How are you going to structure your sprints?
+Scrum facilitation (How are you going to structure your sprints?
 What order are you going to build in?)
 User research informed our plan from the beginning. We had a Design Week, where we decided on features and constraints based on user research and usability testing on a clickable Figma prototype.
 
 ### Requirement analysis
 
-We will you ensure our project is accessible to as many users as possible by spreading the word about it in coworking or other communal spaces we are active, like Space4 in London. 
+We will ensure our project is accessible to as many users as possible by spreading the word about it in coworking or other communal spaces we are active, like Space4 in London. 
 There are no legal or regulatory requirements to consider in this project.
 
 ### Project learnings
 
 Our team worked effectively for this project.
-What we would do differently next time is .................
+What we would do differently next time is work earlier on certain important features e.g. rotation.
 
 ### Research and findings
 
@@ -56,8 +56,8 @@ Our assumptions were mostly right. One user tester was neutral about the need fo
 
 ### Recommendations and conclusions
 
-The features we prioritise to build next, are a monthly rotation option and ....................
-Overall, the project was a success, and ...............
+The features we prioritise to build next, are a monthly rotation option and refactoring rotation.
+Overall, the project was a success, and we learned a lot (about Supabase,Vercel etc)
 
 ### Software Development Lifecycle stages
 
@@ -77,13 +77,14 @@ One unintended consequence might be competition between roommates.
 
 Design
 
-How did you plan a user experience?
-What technical decisions did you make?
+We planned user experience based on the user research and user testing.
+
+What technical decisions did we make?
 Server-render vs client-render vs both
 Relational or non-relational or no DB
 Self-hosted or platform-as-a-service
 Frontend first vs DB first
-Did you create a technical specification?
+Did you create a technical specification? No.
 
 Review methods of software design with reference to functional/technical specifications and apply a justified approach to software development (K11, S11, S12)
 
