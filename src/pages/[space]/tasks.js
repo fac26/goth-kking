@@ -1,7 +1,6 @@
 //localhost:3000/tasks
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { useUser } from '@supabase/auth-helpers-react'
-
 import { useRouter } from 'next/router'
 import ListOfTasks from 'components/tasks/ListOfTasks'
 import Layout from 'components/Layout'
@@ -12,18 +11,16 @@ function Tasks() {
 	const user = useUser()
 	const supabase = useSupabaseClient()
 	const router = useRouter()
-	const pathArr = router.asPath.split('/')
-
 	const session = useSession()
+	const pathArr = router.asPath.split('/')
 
 	const [members, setMembers] = useState('')
 	const [tasks, setTasks] = useState('')
 
 	useEffect(() => {
-		// getSpaceMembers()
 		getTasksBySpaceId(pathArr[1])
 		getMembersBySpaceId(pathArr[1])
-		//getSpaceTasks()
+
 		if (!session) {
 			router.push('/')
 		}
@@ -76,6 +73,18 @@ function Tasks() {
 			console.error(error)
 		}
 	}
+	const deleteTaskHandler = async (taskId) => {
+		try {
+			const { data, error } = await supabase
+				.from('tasks')
+				.delete()
+				.match({ id: taskId })
+			//setTasks((prevState) => [...prevState, spacesResponse.data[0]])
+			getTasksBySpaceId(pathArr[1]) // <-- Update tasks state after adding new task
+		} catch (error) {
+			console.error(error)
+		}
+	}
 
 	return (
 		<>
@@ -85,6 +94,7 @@ function Tasks() {
 				<ListOfTasks
 					tasks={tasks}
 					members={members}
+					onDeleteTask={deleteTaskHandler}
 				/>
 			</Layout>
 		</>
