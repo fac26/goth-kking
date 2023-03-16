@@ -123,7 +123,7 @@ What problems did you encounter during deployment?
 
 Maintain
 
-Is it easy for someone make changes to the codebase?
-Could a new person quickly be onboarded to contribute?
+Is it easy for someone make changes to the codebase.
+A new person could quickly be onboarded to contribute.
 
 </details>
