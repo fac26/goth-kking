@@ -8,18 +8,22 @@ function Task({
 	members,
 	onDeleteTask
 }) {
-	const [toggleList, setToggleList] = useState(false)
+	const [randomMember, setRandomMember] = useState({})
 
 	const deleteTaskHandler = () => {
 		onDeleteTask(id)
 	}
 
-	const toggleMemberList = () => {
-		setToggleList(!toggleList)
+	const assignRandomMember = () => {
+		const randomIndex = Math.floor(Math.random() * members.length)
+		console.log(members[randomIndex])
+		setRandomMember(members[randomIndex])
 	}
 
 	return (
-		<li className='border'id={id}>
+		<li
+			className="border"
+			id={id}>
 			<div>
 				<h3>{taskName}</h3>
 				<p>{taskDescription}</p>
@@ -28,22 +32,8 @@ function Task({
 				<p>{taskPoints}</p>
 			</div>
 			<button onClick={deleteTaskHandler}>Delete</button>
-			<button onClick={toggleMemberList}>Assign</button>
-			<div>
-				{toggleList && (
-					<ul>
-						{members.map((member) => {
-							return (
-								<li
-									key={member.id}
-									id={member.id}>
-									<p>{member.member_email}</p>
-								</li>
-							)
-						})}
-					</ul>
-				)}
-			</div>
+			<button onClick={assignRandomMember}>Assign</button>
+			<div id={randomMember.id}>{randomMember.member_email}</div>
 		</li>
 	)
 }
