@@ -10,7 +10,7 @@ function Task({
 }) {
 	const [toggleList, setToggleList] = useState(false)
 
-	const deletTaskHandler = () => {
+	const deleteTaskHandler = () => {
 		onDeleteTask(id)
 	}
 
@@ -27,7 +27,7 @@ function Task({
 			<div>
 				<p>{taskPoints}</p>
 			</div>
-			<button onClick={deletTaskHandler}>Delete</button>
+			<button onClick={deleteTaskHandler}>Delete</button>
 			<button onClick={toggleMemberList}>Assign</button>
 			<div>
 				{toggleList && (
