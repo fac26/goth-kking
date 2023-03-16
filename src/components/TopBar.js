@@ -9,16 +9,16 @@ import {
 import { BellIcon, CheckIcon } from "@heroicons/react/24/outline";
 import { Menu, Transition, Popover } from "@headlessui/react";
 import Link from "next/link";
-
+import Image from "next/image";
 import { useSession } from "@supabase/supabase-js";
 import { createClient } from "@supabase/supabase-js";
-
+import goblin from '../assets/goblin.jpg'
 import Layout from "@components/Layout";
 import Avatar from "@components/Avatar";
 import Account from "@components/Account";
+ 
 
-
-export default function TopBar({ showNav, setShowNav }) {
+export default function TopBar({ showNav, setShowNav, username }) {
     return (
         <div
             className={`fixed w-full h-16 flex justify-between items-center transition-all duration-[400ms] bg-green ${showNav ? "pl-56" : ""
@@ -36,14 +36,16 @@ export default function TopBar({ showNav, setShowNav }) {
                     <div>
                         <Menu.Button className="inline-flex w-full justify-center items-center">
                             <picture>
-                                <img
-                                    src="/man-smiling.jpg"
-                                    className="rounded-full h-8 md:mr-4 border-2 border-white shadow-sm"
+                                <Image
+                                    src={goblin}
+                                    className="rounded border-white shadow-sm"
                                     alt="profile picture"
+                                    width={40}
+                                    height={40}
                                 />
                             </picture>
                             <span className="hidden md:block font-medium text-gray-700">
-                                Username
+                                {username}
                             </span>
                             <ChevronDownIcon className="ml-2 h-4 w-4 text-gray-700" />
                         </Menu.Button>

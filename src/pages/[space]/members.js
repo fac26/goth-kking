@@ -76,6 +76,7 @@ export default function Members() {
 			<h2>Invite others to your space!</h2>
 			<br></br>
 			<AddMember onAddMember={addNewMemberHandler} />
+			
 			{/* <Auth
 				supabaseClient={supabase}
 				providers={['magic_link']}

@@ -13,11 +13,11 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
 import TopBar from './TopBar'
-
+import { useUser } from '@supabase/auth-helpers-react'
 export default function Layout({ id, children }) {
 	const supabase = useSupabaseClient()
 	const session = useSession()
-
+	const user = useUser()
 	const [pathId, setPathId] = useState(id)
 	const [spaceName, setSpaceName] = useState('')
 	useEffect(() => {
@@ -74,15 +74,25 @@ export default function Layout({ id, children }) {
 		setSpaceName(data[0].name)
 	}
 
+	// const getUserProf = async (id) => {
+	// 	const {data, error} = await supabase
+	// 		.from('profiles')
+	// 		.select('*')
+	// 		.eq('id', id)
+	// }
+	// console.log(user.id)
+	// console.log(getUserProf(user.id))
 	// { title: "Landing Page", icon: <BookOpenIcon/>, path: "/landingpage"}
 
 	// if (pathId === 'undefined') {
 	// 	//lock the other navbar items
 	// }
+	const username ='Iman.Ghellache'
 	const router = useRouter()
 	return (
 		<>
-			<TopBar />
+			<TopBar username={username
+			}/>
 			{session ? (
 				<div className="flex">
 					<div
@@ -122,6 +132,7 @@ export default function Layout({ id, children }) {
 								</li>
 							))}
 						</ul>
+						<br></br>
 						{open && (
 							<button
 								className={`text-white`}

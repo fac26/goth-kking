@@ -32,18 +32,22 @@ const AddMember = (props) => {
 	return (
 		<form onSubmit={handleFormSubmit}>
 			<div>
-				<h1>Invite others to your space:</h1>
 				{/* invite link goes here */}
 				<label htmlFor="email">Email:</label>
-				<input
+				<input className='border-black'
 					type="email"
 					id="email"
 					name="email"
 					ref={emailRef}
 				/>
 			</div>
-
-			<button type="submit">Invite</button>
+			<style jsx>{`
+					#email {
+						border: 1px solid black;
+						border-radius: 0.5rem
+					}
+				`}</style>
+			<button type="submit" className='bg-black text-white rounded-md'>Invite</button>
 		</form>
 	)
 }

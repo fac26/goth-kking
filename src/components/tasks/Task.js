@@ -19,7 +19,7 @@ function Task({
 	}
 
 	return (
-		<li id={id}>
+		<li className='border'id={id}>
 			<div>
 				<h3>{taskName}</h3>
 				<p>{taskDescription}</p>

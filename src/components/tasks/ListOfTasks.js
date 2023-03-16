@@ -5,7 +5,7 @@ function ListOfTasks(props) {
 	return (
 		<>
 			{props.tasks ? (
-				<ul>
+				<ul className="grid grid-cols-3 gap-4">
 					{props.tasks.map((individualtask) => {
 						return (
 							<Task
