@@ -23,12 +23,12 @@ Functionality:
 
 ### Introduction
 
- We are building a web app that lets members of a household or communal space receive automated fair rotations for tasks they want to share between them, mark them us Done so other people know that they have completed them and compete for a the first position on a leaderboard based on points they assign to tasks on their own, according to their own criteria.
+ We are building a web app that allows members of a household or communal space receive automated fair rotations for tasks they want to share between them, mark them us Done so other people know that they have completed them and compete for a the first position on a Leaderboard based on points they assign to tasks on their own, according to their own criteria.
  
 ### Project scope
 
- The scope of this project is to help users create their own spaces, add members in the spaces, and rotate tasks fairly between them.
-We have decided letting users create Weekly rotations for tasks is the feature we want to provide as part of the MVP, and later on we plan to let them create daily rotations, as well.
+ The scope of this project is to help users create their own spaces, add members in said spaces, and rotate tasks fairly between them.
+ We have decided to let users create Weekly rotations for tasks is the feature we want to provide as part of the MVP, and later on we plan to let them create daily rotations, as well.
 
 ### Project plan
 
@@ -100,16 +100,6 @@ Outline and apply the rationale and use of algorithms, logic and data structures
 How did you debug issues that arose?
 
 Apply structured techniques to problem solving to identify and resolve issues and debug basic flaws in code (S7)
-
-Test
-
-How did you verify your project worked correctly?
-
-Identify and create test scenarios which satisfy the project specification (S6)
-
-Did writing automated tests catch any bugs?
-
-Analyse unit testing results and review the outcomes, correcting errors. (S4)
 
 
 ### Clone Repo
