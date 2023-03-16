@@ -16,6 +16,9 @@ function Tasks() {
 
 	const [members, setMembers] = useState('')
 	const [tasks, setTasks] = useState('')
+	const [taskIds, setTaskIds] = useState([])
+	const [memberIds, setMemberIds] = useState([])
+
 
 	useEffect(() => {
 		getTasksBySpaceId(pathArr[1])
@@ -40,6 +43,18 @@ function Tasks() {
 		setTasks(data)
 	}
 
+	let listOfTaskIds = [];
+	useEffect(() => {
+		
+		for (let i = 0; i < tasks.length; i++) {
+		  //console.log(tasks[i].id)
+		  listOfTaskIds.push(tasks[i].id)
+		}
+		setTaskIds(listOfTaskIds)
+	  }, [tasks]);
+	  
+	console.log(taskIds)
+
 	const getMembersBySpaceId = async (spaceId) => {
 		const { data, error } = await supabase
 			.from('space_members')
@@ -52,6 +67,16 @@ function Tasks() {
 		}
 		setMembers(data)
 	}
+	let listOfMemberIds = [];
+	useEffect(() => {
+		
+		for (let i = 0; i < members.length; i++) {
+		  console.log(members[i].id)
+		  listOfMemberIds.push(members[i].id)
+		}
+		setMemberIds(listOfMemberIds)
+	  }, [members]);
+	  
 	const addTaskHandler = async (task) => {
 		const newTask = {
 			name: task.taskName,
@@ -69,6 +94,7 @@ function Tasks() {
 
 			setTasks((prevState) => [...prevState, spacesResponse.data[0]])
 			getTasksBySpaceId(pathArr[1]) // <-- Update tasks state after adding new task
+			addTaskInRotationHandler()
 		} catch (error) {
 			console.error(error)
 		}
@@ -85,6 +111,37 @@ function Tasks() {
 			console.error(error)
 		}
 	}
+	let rotationPosition = 0;
+
+	const addTaskInRotationHandler = async () =>  {
+	
+		console.log(taskIds) //[103, 104] 
+		console.log(memberIds) //[54, 121]
+	
+		for (let i = 0; i < taskIds.length; i++) {
+			for (let j = 0; j < memberIds.length; j++) {
+
+				(rotationPosition === memberIds.length) ? rotationPosition = 1 : rotationPosition++ //we can tweak this bit so it follows the pattern
+				//and the task_ids should change
+				  //we can tweak this bit so it follows the pattern
+				//and the task_ids should change
+					try {
+						const {data, error } = await supabase
+							.from('rotation')
+							.insert([{task_id: taskIds[i], member_id: memberIds[j], rotation_position: rotationPosition}])
+							.single()
+							
+						if (error) {
+							console.error(error)
+							return
+						}
+
+						console.log('Successfully added to rotation table:', data)
+					} catch (error) {
+						console.error(error)
+					}
+				}
+			}}
 
 	return (
 		<>
