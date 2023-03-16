@@ -1,7 +1,7 @@
 function Member(props) {
 	const deleteMemberHandler = () => {
 		console.log('delete )))) ')
-	}
+	};
 
 	return (
 		<li>
@@ -12,7 +12,7 @@ function Member(props) {
 			<div>
 				<p>{props.taskPoints}</p>
 			</div>
-			<button onClick={deleteMemberHandler}>Delete</button>
+			
 		</li>
 	)
 }
