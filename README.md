@@ -89,9 +89,9 @@ Review methods of software design with reference to functional/technical specifi
 
 Implementation/Build
 
-How did you ensure your code was good?
+We frequently checked code using Next.js to ensure it was good, and frequently consoled logged, with an aim of
 
-Create logical and maintainable code to deliver project outcomes, explaining their choice of approach. (S1)
+creating logical and maintainable code to deliver project outcomes, explaining our choice of approach. (S1)
 
 What interesting technical problems did you have to solve?
 
