@@ -1,10 +1,17 @@
 import { useState } from 'react'
 
-function Task({ taskName, taskDescription, taskPoints, members }) {
+function Task({
+	id,
+	taskName,
+	taskDescription,
+	taskPoints,
+	members,
+	onDeleteTask
+}) {
 	const [toggleList, setToggleList] = useState(false)
 
-	const addCommentHandler = () => {
-		console.log('comment added ')
+	const deleteTaskHandler = () => {
+		onDeleteTask(id)
 	}
 
 	const toggleMemberList = () => {
@@ -12,7 +19,7 @@ function Task({ taskName, taskDescription, taskPoints, members }) {
 	}
 
 	return (
-		<li>
+		<li id={id}>
 			<div>
 				<h3>{taskName}</h3>
 				<p>{taskDescription}</p>
@@ -20,7 +27,7 @@ function Task({ taskName, taskDescription, taskPoints, members }) {
 			<div>
 				<p>{taskPoints}</p>
 			</div>
-			<button onClick={addCommentHandler}>Add comment</button>
+			<button onClick={deleteTaskHandler}>Delete</button>
 			<button onClick={toggleMemberList}>Assign</button>
 			<div>
 				{toggleList && (
@@ -30,7 +37,7 @@ function Task({ taskName, taskDescription, taskPoints, members }) {
 								<li
 									key={member.id}
 									id={member.id}>
-									{member.member_email}
+									<p>{member.member_email}</p>
 								</li>
 							)
 						})}
