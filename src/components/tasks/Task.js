@@ -33,7 +33,7 @@ function Task({
 			</div>
 			<button onClick={deleteTaskHandler}>Delete</button>
 			<button onClick={assignRandomMember}>Assign</button>
-			<div id={randomMember.id}>{randomMember.member_email}</div>
+			<div id={randomMember.id}>{randomMember.member_email.split('@')[0]}</div>
 		</li>
 	)
 }
