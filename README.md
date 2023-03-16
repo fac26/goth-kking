@@ -66,9 +66,7 @@ User can delete the task
 
 ### Project plan
 
-Scrum facilitation (How are you going to structure your sprints?
-What order are you going to build in?)
-User research informed our plan from the beginning. We had a Design Week, where we decided on features and constraints based on user research and usability testing on a clickable Figma prototype.
+User research informed our plan from the beginning. We had a Design Week, where we decided on features and constraints based on user research and usability testing on a clickable Figma prototype. Our first sprint was focused on building the skeleton on the website, linking all the pages together and deploying the website to a live environment. Our second sprint was focused on adding functionality such as adding tasks, deleting tasks, creating spaces and making sure our MVP is met.
 
 ### Requirement analysis
 
