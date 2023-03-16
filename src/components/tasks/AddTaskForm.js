@@ -78,7 +78,7 @@ function AddTaskForm(props) {
 				/>
 			</div>
 			<div>
-				<label htmlFor="taskDescription">Task desctiption</label>
+				<label htmlFor="taskDescription">Task description</label>
 				<input
 					id="taskDescription"
 					type="text"
