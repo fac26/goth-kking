@@ -76,8 +76,8 @@ There are no legal or regulatory requirements to consider in this project.
 ### Project learnings
 
 Our team worked effectively for this project.
-What we would do differently next time is work earlier on certain important features e.g. rotation.
-
+What we would do differently next time is 
+ 
 ### Research and findings
 
 We had many findings from user testing. Users gave us opinions that we have considered on certain elements and their appearance (drop down menu, share link) as well as on what they want from a task rotation app and what data they want to view on the dashboard, the leaderboard etc. and how.
@@ -88,7 +88,7 @@ Our assumptions were mostly right. One user tester was neutral about the need fo
 
 ### Recommendations and conclusions
 
-The features we prioritise to build next, are a monthly rotation option and refactoring rotation.
+A critical feature to consider adding for the future is a rotation system and a way to assign members to a task.
 Overall, the project was a success, and we learned a lot (about Supabase,Vercel etc)
 
 ### Software Development Lifecycle stages
