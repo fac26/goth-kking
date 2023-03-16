@@ -79,6 +79,12 @@ export default function Account({ session }) {
         <label htmlFor="email">Email</label>
         <input id="email" type="text" value={session.user.email} disabled />
       </div>
+      <style jsx>{`
+					#email {
+						border: 1px solid black;
+						border-radius: 0.5rem
+					}
+				`}</style>
       <div>
         <label htmlFor="username">Username</label>
         <input
@@ -88,6 +94,12 @@ export default function Account({ session }) {
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
+      <style jsx>{`
+					#username {
+						border: 1px solid black;
+						border-radius: 0.5rem
+					}
+				`}</style>
       <div>
         <label htmlFor="website">Website</label>
         <input
@@ -97,15 +109,26 @@ export default function Account({ session }) {
           onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
-
+      <style jsx>{`
+					#website {
+						border: 1px solid black;
+						border-radius: 0.5rem
+					}
+				`}</style>
       <div>
         <button
           className="button primary block"
           onClick={() => updateProfile({ username, website, avatar_url })}
           disabled={loading}
+          id='button'
         >
           {loading ? 'Loading ...' : 'Update'}
         </button>
+        {/* <style jsx>{`
+					#button {
+						bg-black text-white rounded-m
+					}
+				`}</style> */}
       </div>
 
       {/* <div>

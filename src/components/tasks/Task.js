@@ -12,7 +12,7 @@ function Task({ taskName, taskDescription, taskPoints, members }) {
 	}
 
 	return (
-		<li>
+		<li className='border'>
 			<div>
 				<h3>{taskName}</h3>
 				<p>{taskDescription}</p>

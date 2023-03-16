@@ -17,6 +17,8 @@ function CreateSpace({ addSpace }) {
 	return (
 		<form onSubmit={submitSpaceHandler}>
 			<div>
+				<br></br>
+				<br></br>
 				<label htmlFor="spaceName">Name space</label>
 				<input
 					name="spaceName"
@@ -31,7 +33,7 @@ function CreateSpace({ addSpace }) {
 					}
 				`}</style>
 			</div>
-			<button>Add</button>
+			<button className='bg-black text-white rounded-md'>Add</button>
 		</form>
 	)
 }

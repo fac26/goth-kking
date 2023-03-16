@@ -67,7 +67,8 @@ function AddTaskForm(props) {
 	return (
 		<form onSubmit={submitTaskHandler}>
 			<div>
-				<label htmlFor="taskname">Task title</label>
+				<br></br>
+				<label htmlFor="taskname">Task title </label>
 				<input
 					id="taskname"
 					type="text"
@@ -77,8 +78,9 @@ function AddTaskForm(props) {
 					//onFocus={removeInvalidClassHandler}
 				/>
 			</div>
+			<br></br>
 			<div>
-				<label htmlFor="taskDescription">Task desctiption</label>
+				<label htmlFor="taskDescription">Task description </label>
 				<input
 					id="taskDescription"
 					type="text"
@@ -88,8 +90,9 @@ function AddTaskForm(props) {
 					//onFocus={removeInvalidClassHandler}
 				/>
 			</div>
+			<br></br>
 			<div>
-				<label htmlFor="taskPoints">Points</label>
+				<label htmlFor="taskPoints">Points </label>
 				<input
 					id="taskPoints"
 					type="number"
@@ -100,6 +103,7 @@ function AddTaskForm(props) {
 					//onFocus={removeInvalidClassHandler}
 				/>
 			</div>
+			<br></br>
 			{/* <div>
 				<label htmlFor="member">Assign member to task</label>
 				<select
@@ -124,12 +128,13 @@ function AddTaskForm(props) {
 			<style jsx>{`
 				input {
 					border: 1px solid black;
+					border-radius: 0.5rem
 				}
 				.invalid {
 					border: 1px solid red;
 				}
 			`}</style>
-			<button type="submit">Add Task</button>
+			<button type="submit" className='bg-black text-white rounded-md'>Add Task</button>
 		</form>
 	)
 }

@@ -18,27 +18,25 @@ function Home() {
 		<Layout>
 			<div className="container">
 				<div>
-					<div className="">
-						<h2>What is Guardian of the House?</h2>
-						<p>
+					<div class='font-mono'>
+						<br></br>
+						<br></br>
+						<h1 class='text-2xl'>What is Guardian of the House?</h1>
+						<br></br>
+						<p class='text-xl'>
 							Guardian of the House is a web application that allows you to
 							create a space for members to organize and collaborate around
 							tasks and chores.
 						</p>
-					</div>
-					<div className="">
-						<p>
+						<br></br>
+						<p class='text-xl'>
 							Once you have created a space, you can invite members members to
 							join the space. You can create tasks and assign them to members.
 							By default, the tasks will rotate between members on a weekly
 							basis.
 						</p>
-					</div>
-					<div className="">
-						<Image
-							src=""
-							alt="Guardian of the House"
-						/>
+						<br></br>
+						<div ><iframe  height="370" src="https://giphy.com/embed/HppueDDtfDnSkL1vgG/video" width="480"></iframe></div>
 					</div>
 				</div>
 			</div>

@@ -7,6 +7,8 @@ function UserProfile() {
 
 	return (
 		<Layout>
+			<br></br>
+			<br></br>
 			<Account session={session} />
 		</Layout>
 	)

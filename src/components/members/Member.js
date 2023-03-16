@@ -12,7 +12,7 @@ function Member(props) {
 			<div>
 				<p>{props.taskPoints}</p>
 			</div>
-			<button onClick={deleteMemberHandler}>Delete</button>
+			<button onClick={deleteMemberHandler} className='bg-black text-white rounded-md'>Delete</button>
 		</li>
 	)
 }
