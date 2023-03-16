@@ -21,6 +21,38 @@ Functionality:
 <details>
 <summary>Project Documentation</summary>
 
+User journey
+ Comment
+
+The user logs in and is redirected to the user profile page.
+
+The user profile page gives the user the right to update their data, such as adding an avatar and adding or updating a username.
+
+The left menu
+
+Home
+Spaces
+User Profile
+Members (disabled until the user selects a space)
+Tasks (disabled until the user selects a space)
+Leaderboard (disabled until the user selects a space)
+Spaces
+
+Add space (user can add a new space)
+User can see all spaces he created or is part of
+When the user clicks on a space all the left menu bar’s links are unlocke, and the user is able to:
+access the members page specific to the space where they can add new members,
+access the tasks page and add new tasks to the space
+access the leaderbord
+Members
+
+User can add a new member to the chosen space
+Tasks
+
+User can add a new task to the chosen space
+User can assign a member of the space to the task
+User can delete the task
+
 ### Introduction
 
  We are building a web app that allows members of a household or communal space receive automated fair rotations for tasks they want to share between them, mark them us Done so other people know that they have completed them and compete for a the first position on a Leaderboard based on points they assign to tasks on their own, according to their own criteria.
