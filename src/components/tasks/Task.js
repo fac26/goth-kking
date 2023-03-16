@@ -13,11 +13,12 @@ function Task({ taskName, taskDescription, taskPoints, members }) {
 		setToggleList(!toggleList)
 	}
 
-	// const deleteByValue = value => {
-	// 	setTaskList(oldValues => {
-	// 	  return oldValues.filter(taskItem => taskItem !== value)
-	// 	})
-	//   }
+	
+	const deleteByValue = value => {
+		setTaskList(oldValues => {
+		  return oldValues.filter(taskItem => taskItem !== value)
+		})
+	  }
 
 	return (
 		<li>
@@ -30,7 +31,7 @@ function Task({ taskName, taskDescription, taskPoints, members }) {
 			</div>
 			<button onClick={addCommentHandler}>Add comment</button>
 			<button onClick={toggleMemberList}>Assign</button>
-			{/* <button onClick={() => deleteByValue(task)}>Delete</button> */}
+			<button onClick={() => deleteByValue(task)}>Delete</button>
 			<div>
 				{toggleList && (
 					<ul>
