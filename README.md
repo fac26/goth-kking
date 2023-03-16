@@ -21,33 +21,35 @@ Functionality:
 <details>
 <summary>Project Documentation</summary>
 
-User journey
- Comment
+## **User journey**
 
-The user logs in and is redirected to the user profile page.
+1. The user logs in and is redirected to the user profile page.
 
-The user profile page gives the user the right to update their data, such as adding an avatar and adding or updating a username.
+2. The user profile page gives the user the right to update their data, such as adding an avatar and adding or updating a username.
 
-The left menu
+3. The left menu
 
-Home
-Spaces
-User Profile
-Members (disabled until the user selects a space)
-Tasks (disabled until the user selects a space)
-Leaderboard (disabled until the user selects a space)
-Spaces
+- Home
+- Spaces
+- User Profile
+- Members (disabled until the user selects a space)
+- Tasks (disabled until the user selects a space)
+- Leaderboard (disabled until the user selects a space)
+ 
+4. Spaces
 
-Add space (user can add a new space)
-User can see all spaces he created or is part of
-When the user clicks on a space all the left menu bar’s links are unlocke, and the user is able to:
-access the members page specific to the space where they can add new members,
-access the tasks page and add new tasks to the space
-access the leaderbord
-Members
+- Add space (user can add a new space)
+- User can see all spaces he created or is part of
+- When the user clicks on a space all the left menu bar’s links are unlocke, and the user is able to:
+  *access the members page specific to the space where they can add new members,
+  *access the tasks page and add new tasks to the space
+  *access the leaderbord
+ 
+5. Members
 
 User can add a new member to the chosen space
-Tasks
+ 
+6. Tasks
 
 User can add a new task to the chosen space
 User can assign a member of the space to the task
