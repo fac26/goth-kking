@@ -76,6 +76,20 @@ function Tasks() {
 			console.error(error)
 		}
 	}
+	const deleteTaskHandler = async (taskId) => {
+		console.log(taskId, ' line delete in pages')
+
+		try {
+			const { data, error } = await supabase
+				.from('tasks')
+				.delete()
+				.match({ id: taskId })
+			//setTasks((prevState) => [...prevState, spacesResponse.data[0]])
+			getTasksBySpaceId(pathArr[1]) // <-- Update tasks state after adding new task
+		} catch (error) {
+			console.error(error)
+		}
+	}
 
 	return (
 		<>
@@ -85,6 +99,7 @@ function Tasks() {
 				<ListOfTasks
 					tasks={tasks}
 					members={members}
+					onDeleteTask={deleteTaskHandler}
 				/>
 			</Layout>
 		</>
